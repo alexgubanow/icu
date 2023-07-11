@@ -1365,15 +1365,15 @@ static const UConverterImpl _Bocu1Impl={
 
     (UConverterToUnicode)_Bocu1ToUnicode,
     (UConverterToUnicode)_Bocu1ToUnicodeWithOffsets,
-    _Bocu1FromUnicode,
-    _Bocu1FromUnicodeWithOffsets,
+    (UConverterFromUnicode)_Bocu1FromUnicode,
+    (UConverterFromUnicode)_Bocu1FromUnicodeWithOffsets,
     NULL,
 
     NULL,
     NULL,
     NULL,
     NULL,
-    ucnv_getCompleteUnicodeSet,
+    (UConverterGetUnicodeSet)ucnv_getCompleteUnicodeSet,
 
     NULL,
     NULL
