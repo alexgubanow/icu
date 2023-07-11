@@ -3721,8 +3721,8 @@ static const UConverterImpl _ISO2022Impl={
     NULL,
 
     (UConverterOpen)_ISO2022Open,
-    _ISO2022Close,
-    _ISO2022Reset,
+    (UConverterClose)_ISO2022Close,
+    (UConverterReset)_ISO2022Reset,
 
 #ifdef U_ENABLE_GENERIC_ISO_2022
     T_UConverter_toUnicode_ISO_2022_OFFSETS_LOGIC,
@@ -3781,8 +3781,8 @@ static const UConverterImpl _ISO2022JPImpl={
     NULL,
 
     (UConverterOpen)_ISO2022Open,
-    _ISO2022Close,
-    _ISO2022Reset,
+    (UConverterClose)_ISO2022Close,
+    (UConverterReset)_ISO2022Reset,
 
     UConverter_toUnicode_ISO_2022_JP_OFFSETS_LOGIC,
     UConverter_toUnicode_ISO_2022_JP_OFFSETS_LOGIC,
@@ -3839,8 +3839,8 @@ static const UConverterImpl _ISO2022KRImpl={
     NULL,
 
     (UConverterOpen)_ISO2022Open,
-    _ISO2022Close,
-    _ISO2022Reset,
+    (UConverterClose)_ISO2022Close,
+    (UConverterReset)_ISO2022Reset,
 
     UConverter_toUnicode_ISO_2022_KR_OFFSETS_LOGIC,
     UConverter_toUnicode_ISO_2022_KR_OFFSETS_LOGIC,
@@ -3898,8 +3898,8 @@ static const UConverterImpl _ISO2022CNImpl={
     NULL,
 
     (UConverterOpen)_ISO2022Open,
-    _ISO2022Close,
-    _ISO2022Reset,
+    (UConverterClose)_ISO2022Close,
+    (UConverterReset)_ISO2022Reset,
 
     UConverter_toUnicode_ISO_2022_CN_OFFSETS_LOGIC,
     UConverter_toUnicode_ISO_2022_CN_OFFSETS_LOGIC,
