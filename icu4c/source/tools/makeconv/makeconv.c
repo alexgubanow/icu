@@ -667,9 +667,12 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
         if(data->cnvData==NULL) {
             *pErrorCode=U_MEMORY_ALLOCATION_ERROR;
 
-        } else if(!data->cnvData->isValid(data->cnvData,
-                            staticData->subChar, staticData->subCharLen)
-        ) {
+        } 
+    fprintf(stderr, "data->cnvData->isValid %p\n", data->cnvData->isValid);
+        UBool st = data->cnvData->isValid(data->cnvData, staticData->subChar, staticData->subCharLen);
+    fprintf(stderr, "after data->cnvData->isValid\n");
+        if(!st)
+        {
             fprintf(stderr, "       the substitution character byte sequence is illegal in this codepage structure!\n");
             *pErrorCode=U_INVALID_TABLE_FORMAT;
 
@@ -727,7 +730,6 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
         char baseFilename[500];
         char *basename;
 
-    fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         initConvData(&baseData);
 
         /* assemble a path/filename for data->ucm->baseName */
@@ -736,7 +738,6 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
         uprv_strcpy(basename, data->ucm->baseName);
         uprv_strcat(basename, ".ucm");
 
-    fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         /* read the base table */
         dataIsBase=readFile(&baseData, baseFilename, pErrorCode);
         if(U_FAILURE(*pErrorCode)) {
@@ -852,7 +853,6 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
             }
         }
 
-    fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         cleanupConvData(&baseData);
     }
 }
