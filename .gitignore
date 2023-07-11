@@ -945,3 +945,7 @@ icu4j/out
 icu4j/perf-tests/out
 icu4j/tools/build/out
 icu4j/tools/misc/out
+icu4c/source/samples/cal/cal.o
+icu4c/source/samples/cal/uprint.o
+icu4c/source/samples/date/uprint.o
+icu4c/source/samples/date/date.o

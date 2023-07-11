@@ -21,7 +21,7 @@
 #include "ucln.h"
 #include <stdio.h>
 #ifdef __MVS__  /* defined by z/OS compiler */
-#define _POSIX_SOURCE
+// #define _POSIX_SOURCE we pass this in compiler options always
 #include <cics.h> /* 12 Nov 2011 JAM iscics() function */
 #endif
 
