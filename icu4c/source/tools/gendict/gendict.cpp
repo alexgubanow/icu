@@ -53,6 +53,8 @@ const char *wOutname="(some file)";
 const int firstSeconds = 5; /* seconds between notices*/
 const int nextSeconds = 15; /* seconds between notices*/
 
+extern "C" void alarm_fn(int /*n*/);
+
 void alarm_fn(int /*n*/) {
   printf("%s: still writing\t%s (%ds)\t...\n",    wToolname, wOutname, elapsedTime());
   
