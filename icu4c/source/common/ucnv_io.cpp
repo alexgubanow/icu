@@ -1262,9 +1262,9 @@ ucnv_swapAliases(const UDataSwapper *ds,
             }
 
             if(ds->outCharset==U_ASCII_FAMILY) {
-                tempTable.stripForCompare=ucnv_io_stripASCIIForCompare;
+                tempTable.stripForCompare=(StripForCompareFn *)ucnv_io_stripASCIIForCompare;
             } else /* U_EBCDIC_FAMILY */ {
-                tempTable.stripForCompare=ucnv_io_stripEBCDICForCompare;
+                tempTable.stripForCompare=(StripForCompareFn *)ucnv_io_stripEBCDICForCompare;
             }
 
             /*
