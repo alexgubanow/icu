@@ -317,5 +317,5 @@ ucnv_toUWriteCodePoint(UConverter *cnv,
                        UErrorCode *pErrorCode);
 
 #endif
-
+#define UCNV_EXT_FROM_U_GOOD_ONE_WAY_FLAG 0x40000000
 #endif /* UCNV_CNV */
