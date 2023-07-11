@@ -657,11 +657,13 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
     states=&data->ucm->states;
 
     if(dataIsBase) {
+    fprintf(stderr, "after if(dataIsBase)\n");
         /*
          * Build a normal .cnv file with a base table
          * and an optional extension table.
          */
         data->cnvData=MBCSOpen(data->ucm);
+    fprintf(stderr, "after MBCSOpen\n");
         if(data->cnvData==NULL) {
             *pErrorCode=U_MEMORY_ALLOCATION_ERROR;
 
@@ -686,6 +688,7 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
             /* sort the table so that it can be turned into UTF-8-friendly data */
             ucm_sortTable(data->ucm->base);
         }
+    fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
 
         if(U_SUCCESS(*pErrorCode)) {
             if(
@@ -724,6 +727,7 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
         char baseFilename[500];
         char *basename;
 
+    fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         initConvData(&baseData);
 
         /* assemble a path/filename for data->ucm->baseName */
@@ -732,6 +736,7 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
         uprv_strcpy(basename, data->ucm->baseName);
         uprv_strcat(basename, ".ucm");
 
+    fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         /* read the base table */
         dataIsBase=readFile(&baseData, baseFilename, pErrorCode);
         if(U_FAILURE(*pErrorCode)) {
@@ -847,6 +852,7 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
             }
         }
 
+    fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         cleanupConvData(&baseData);
     }
 }
