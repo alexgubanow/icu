@@ -1364,7 +1364,7 @@ static const UConverterImpl _Bocu1Impl={
     NULL,
 
     (UConverterToUnicode)_Bocu1ToUnicode,
-    _Bocu1ToUnicodeWithOffsets,
+    (UConverterToUnicode)_Bocu1ToUnicodeWithOffsets,
     _Bocu1FromUnicode,
     _Bocu1FromUnicodeWithOffsets,
     NULL,
