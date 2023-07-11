@@ -578,6 +578,8 @@ addOfficialTaggedStandards(char *line, int32_t lineLen) {
     char *tag;
     static const char WHITESPACE[] = " \t";
     fprintf(stderr, "processing '%s'\n", line);
+    fprintf(stderr, "line[0] '%c' as hex 0x%x, while { is 0x%x\n", line[0], line[0], '{');
+    fprintf(stderr, "line[lineLen - 1] '%c' as hex 0x%x, while } is 0x%x\n", line[lineLen - 1], line[lineLen - 1], '}');
     if (tagCount > UCNV_NUM_RESERVED_TAGS) {
         fprintf(stderr, "%s:%d: error: official tags already added\n", path, lineNum);
         exit(U_BUFFER_OVERFLOW_ERROR);
