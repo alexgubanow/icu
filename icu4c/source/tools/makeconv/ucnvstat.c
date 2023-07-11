@@ -64,4 +64,3 @@ const UConverterStaticData *ucnv_converterStaticData[UCNV_NUMBER_OF_SUPPORTED_CO
     NULL/*ISO2022*/,
     /* LMBCS */ NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 };
-
