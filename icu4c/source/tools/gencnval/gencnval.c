@@ -352,7 +352,7 @@ parseFile(FileStream *in) {
 
         if (validParse || lineSize > 0) {
             if (isspace((int)*line)) {
-                fprintf(stderr, "*line '%c' 0x%x (int)*line '%c' 0x%x\n", *line, *line, (int)*line, (int)*line);
+                fprintf(stderr, "*line '%c' 0x%hhx (int)*line '%c' 0x%hhx\n", *line, *line, (int)*line, (int)*line);
                 fprintf(stderr, "%s:%d: error: cannot start an alias with a space\n", path, lineNum-1);
                 exit(U_PARSE_ERROR);
             } else if (line[0] == '{') {
