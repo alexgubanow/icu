@@ -1288,7 +1288,7 @@ ucnv_swapAliases(const UDataSwapper *ds,
             }
 
             uprv_sortArray(tempTable.rows, (int32_t)count, sizeof(TempRow),
-                           io_compareRows, &tempTable,
+                           (UComparator *)io_compareRows, &tempTable,
                            FALSE, pErrorCode);
 
             if(U_SUCCESS(*pErrorCode)) {
