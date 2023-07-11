@@ -584,14 +584,14 @@ addOfficialTaggedStandards(char *line, int32_t lineLen) {
         fprintf(stderr, "%s:%d: error: official tags already added\n", path, lineNum);
         exit(U_BUFFER_OVERFLOW_ERROR);
     }
-    tag = strchr(line, '{');
+    tag = strchr(line, 0xc0);
     if (tag == NULL) {
         /* Why were we called? */
         fprintf(stderr, "%s:%d: error: Missing start of tag group\n", path, lineNum);
         exit(U_PARSE_ERROR);
     }
     tag++;
-    endTagExp = strchr(tag, '}');
+    endTagExp = strchr(tag, 0xd0);
     if (endTagExp == NULL) {
         fprintf(stderr, "%s:%d: error: Missing end of tag group\n", path, lineNum);
         exit(U_PARSE_ERROR);
