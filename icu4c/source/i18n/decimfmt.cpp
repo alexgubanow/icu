@@ -1416,7 +1416,7 @@ DecimalFormat::_format(const DigitList &number,
     if (fUseExponentialNotation || areSignificantDigitsUsed()) {
         int32_t sigDigits = precision();
         if (sigDigits > 0) {
-            adjustedNum.round(sigDigits);
+            adjustedNum.roundIt(sigDigits);
         }
     } else {
         // Fixed point format.  Round to a set number of fraction digits.

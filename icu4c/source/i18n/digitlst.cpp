@@ -461,7 +461,7 @@ DigitList::getDouble() const
         if (getCount() > MAX_DBL_DIGITS + 3) {
             DigitList numToConvert(*this);
             numToConvert.reduce();    // Removes any trailing zeros, so that digit count is good.
-            numToConvert.round(MAX_DBL_DIGITS+3);
+            numToConvert.roundIt(MAX_DBL_DIGITS+3);
             uprv_decNumberToString(numToConvert.fDecNumber, s.getAlias());
             // TODO:  how many extra digits should be included for an accurate conversion?
         } else {
@@ -904,7 +904,7 @@ DigitList::ensureCapacity(int32_t requestedCapacity, UErrorCode &status) {
  * Upon return, count will be less than or equal to maximumDigits.
  */
 void
-DigitList::round(int32_t maximumDigits)
+DigitList::roundIt(int32_t maximumDigits)
 {
     int32_t savedDigits  = fContext.digits;
     fContext.digits = maximumDigits;

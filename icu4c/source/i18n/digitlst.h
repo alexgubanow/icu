@@ -314,7 +314,7 @@ public:
      * @param maximumDigits The maximum number of digits to be shown.
      * Upon return, count will be less than or equal to maximumDigits.
      */
-    void round(int32_t maximumDigits);
+    void roundIt(int32_t maximumDigits);
 
     void roundFixedPoint(int32_t maximumFractionDigits);
 
