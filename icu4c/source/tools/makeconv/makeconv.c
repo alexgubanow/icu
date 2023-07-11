@@ -639,16 +639,19 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
     UConverterStaticData *staticData;
     UCMStates *states, *baseStates;
 
+    fprintf(stderr, "createConverter\n");
     if(U_FAILURE(*pErrorCode)) {
         return;
     }
 
     initConvData(data);
+    fprintf(stderr, "after initConvData\n");
 
     dataIsBase=readFile(data, converterName, pErrorCode);
     if(U_FAILURE(*pErrorCode)) {
         return;
     }
+    fprintf(stderr, "after readFile\n");
 
     staticData=&data->staticData;
     states=&data->ucm->states;
