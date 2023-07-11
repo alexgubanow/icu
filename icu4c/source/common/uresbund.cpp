@@ -2308,7 +2308,7 @@ static const UEnumeration gLocalesEnum = {
         ures_loc_closeLocales,
         ures_loc_countLocales,
         uenum_unextDefault,
-        ures_loc_nextLocale,
+        (UEnumNext *)ures_loc_nextLocale,
         ures_loc_resetLocales
 };
 
