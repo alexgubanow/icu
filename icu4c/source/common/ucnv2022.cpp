@@ -3739,9 +3739,9 @@ static const UConverterImpl _ISO2022Impl={
 
     NULL,
     (UConverterGetName)_ISO2022getName,
-    _ISO_2022_WriteSub,
-    _ISO_2022_SafeClone,
-    _ISO_2022_GetUnicodeSet,
+    (UConverterWriteSub)_ISO_2022_WriteSub,
+    (UConverterSafeClone)_ISO_2022_SafeClone,
+    (UConverterGetUnicodeSet)_ISO_2022_GetUnicodeSet,
 
     NULL,
     NULL
