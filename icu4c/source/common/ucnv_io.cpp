@@ -836,7 +836,7 @@ static const UEnumeration gEnumAliases = {
     ucnv_io_countStandardAliases,
     uenum_unextDefault,
     (UEnumNext  *)ucnv_io_nextStandardAliases,
-    (UEnumReset *)ucnv_io_resetStandardAliases
+    ucnv_io_resetStandardAliases
 };
 
 U_CAPI UEnumeration * U_EXPORT2
@@ -1061,7 +1061,7 @@ static const UEnumeration gEnumAllConverters = {
     ucnv_io_closeUEnumeration,
     ucnv_io_countAllConverters,
     uenum_unextDefault,
-    ucnv_io_nextAllConverters,
+    (UEnumNext  *)ucnv_io_nextAllConverters,
     ucnv_io_resetAllConverters
 };
 
