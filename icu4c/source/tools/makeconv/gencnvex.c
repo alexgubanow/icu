@@ -85,6 +85,7 @@ CnvExtOpen(UCMFile *ucm) {
     extData->ucm=ucm; /* aliased, not owned */
 
     extData->newConverter.close=CnvExtClose;
+    fprintf(stderr, "CnvExtIsValid %p\n", CnvExtIsValid);
     extData->newConverter.isValid=CnvExtIsValid;
     extData->newConverter.addTable=CnvExtAddTable;
     extData->newConverter.write=CnvExtWrite;

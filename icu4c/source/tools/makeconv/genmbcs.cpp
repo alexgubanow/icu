@@ -153,6 +153,7 @@ MBCSInit(MBCSData *mbcsData, UCMFile *ucm) {
     mbcsData->ucm=ucm; /* aliased, not owned */
 
     mbcsData->newConverter.close=MBCSClose;
+    fprintf(stderr, "MBCSIsValid %p\n", MBCSIsValid);
     mbcsData->newConverter.isValid=MBCSIsValid;
     mbcsData->newConverter.addTable=MBCSAddTable;
     mbcsData->newConverter.write=MBCSWrite;
