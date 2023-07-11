@@ -1,1 +1,61 @@
-a\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\@@@Ã–—¨™‰‡ˆ£@MÃ]@òğñòk@É•£…™•£‰–•“@Â¤¢‰•…¢¢@Ôƒˆ‰•…¢\@@@Ã–™—–™£‰–•@•„@–£ˆ…™¢K@@Á““@Ù‰‡ˆ£¢@Ù…¢…™¥…„K\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\aa\\@\@à†‰“…@\@à‚™‰…†@ÃNNz@‰•£…™•“@£…”—“£…@Å•¤”â…£Ln@\a{‰†•„…†@ÅÕäÔâÅãmÈ{„…†‰•…@ÅÕäÔâÅãmÈ{‰•ƒ“¤„…@¤•‰ƒ–„…a¤£¨—…¢Kˆ{‰†@ämâÈÖæmÃ×Óäâ×ÓäâmÁ×ÉämÕÁÔÅâ×ÁÃÅmÂÅÇÉÕa\\@\@…•¤”@‚‰£¢…£@†–™@‚––“…•@†‰…“„¢K@â‰”‰“™@£–@Ñ¥@Å•¤”â…£LnK@@\@Õ……„¢@£–@™•‡…@ƒˆ…ƒ’K@\@|‰•£…™•“@\a£…”—“£…L£¨—…•”…@ãk@¤‰•£óòm£@”‰•å“¤…k@¤‰•£óòm£@“‰”‰£å“¤…nƒ“¢¢@Å•¤”â…£@À—¤‚“‰ƒz@@@@‰•“‰•…@Å•¤”â…£M]@z@†Â––“¢Mğ]@ÀĞ@@@@‰•“‰•…@Å•¤”â…£Mƒ–•¢£@Å•¤”â…£Lãk”‰•å“¤…k“‰”‰£å“¤…nP@–£ˆ…™]@z@†Â––“¢M–£ˆ…™K†Â––“¢]@ÀĞ@@@@‰•“‰•…@¡Å•¤”â…£M]@ÀĞ@@@@‰•“‰•…@¥–‰„@ƒ“…™M]@À@†Â––“¢~ğ^@Ğ@@@@‰•“‰•…@¥–‰„@„„Mã@£–Á„„]@À@¢…£M£–Á„„k@ñ]^@Ğ@@@@‰•“‰•…@¥–‰„@™…”–¥…Mã@£–Ù…”–¥…]@À@¢…£M£–Ù…”–¥…k@ğ]^@Ğ@@@@‰•“‰•…@‰•£óòm£@ƒ–•£‰•¢Mã@£–Ãˆ…ƒ’]@ƒ–•¢£@À@™…£¤™•@‡…£M£–Ãˆ…ƒ’]^@Ğ@@@@‰•“‰•…@¥–‰„@¢…£Mã@£–â…£k@‰•£óòm£@¥]@À@†Â––“¢~M†Â––“¢PM¡†“‡M£–â…£]]]OM¥oM†“‡M£–â…£]]zğ]^@Ğ@@@@‰•“‰•…@‰•£óòm£@‡…£Mã@£–Ãˆ…ƒ’]@ƒ–•¢£@À@™…£¤™•@M†Â––“¢@P@†“‡M£–Ãˆ…ƒ’]]oñzğ^@Ğ@@@@‰•“‰•…@äÂ––“@‰¢å“‰„Å•¤”Mã@£–Ãˆ…ƒ’]@ƒ–•¢£@À@@™…£¤™•@M£–Ãˆ…ƒ’n~”‰•å“¤…PP£–Ãˆ…ƒ’L“‰”‰£å“¤…]^@Ğ@@@@‰•“‰•…@äÂ––“@‰¢å“‰„å“¤…M‰•£óòm£@¥]@ƒ–•¢£@À@™…£¤™•@M¥~~ğOO¥~~ñ]^@Ğ@@@@‰•“‰•…@ƒ–•¢£@Å•¤”â…£Lãk”‰•å“¤…k“‰”‰£å“¤…nP@–—…™£–™~Mƒ–•¢£@Å•¤”â…£Lãk”‰•å“¤…k“‰”‰£å“¤…nP@–£ˆ…™]@À@@@@@@@@†Â––“¢@~@–£ˆ…™K†Â––“¢^@@@@@@@@™…£¤™•@\£ˆ‰¢^@@@@Ğ@@@@@@‰•“‰•…@¤‰•£óòm£@‡…£Á““M]@ƒ–•¢£@À@@@@@@@@™…£¤™•@†Â––“¢^@@@@@Ğ—™‰¥£…z@@@@‰•“‰•…@¤‰•£óòm£@†“‡Mã@£–Ãˆ…ƒ’]@ƒ–•¢£@À@™…£¤™•@MñLLM£–Ãˆ…ƒ’`”‰•å“¤…]]^@Ğ—™‰¥£…z@@@@¤‰•£óòm£@†Â––“¢^Ğ^ämÕÁÔÅâ×ÁÃÅmÅÕÄ{…•„‰†@a\@ämâÈÖæmÃ×Óäâ×ÓäâmÁ×É@\a{…•„‰†@a\@ÅÕäÔâÅãmÈ@\a
+/*
+******************************************************************************
+*
+*   Copyright (C) 2012, International Business Machines
+*   Corporation and others.  All Rights Reserved.
+*
+******************************************************************************
+*/
+
+/**
+ * \file
+ * \brief C++: internal template EnumSet<>
+ */
+
+#ifndef ENUMSET_H
+#define ENUMSET_H
+
+#include "unicode/utypes.h"
+
+#if U_SHOW_CPLUSPLUS_API
+
+U_NAMESPACE_BEGIN
+
+/**
+ * enum bitset for boolean fields. Similar to Java EnumSet<>. 
+ * Needs to range check.
+ * @internal
+ */
+template<typename T, uint32_t minValue, uint32_t limitValue>
+class EnumSet {
+public:
+    inline EnumSet() : fBools(0) {}
+    inline EnumSet(const EnumSet<T,minValue,limitValue>& other) : fBools(other.fBools) {}
+    inline ~EnumSet() {}
+    inline void clear() { fBools=0; }
+    inline void add(T toAdd) { set(toAdd, 1); }
+    inline void remove(T toRemove) { set(toRemove, 0); }
+    inline int32_t contains(T toCheck) const { return get(toCheck); }
+    inline void set(T toSet, int32_t v) { fBools=(fBools&(~flag(toSet)))|(v?(flag(toSet)):0); }
+    inline int32_t get(T toCheck) const { return (fBools & flag(toCheck))?1:0; }
+    inline UBool isValidEnum(T toCheck) const {  return (toCheck>=minValue&&toCheck<limitValue); }
+    inline UBool isValidValue(int32_t v) const { return (v==0||v==1); }
+    inline const EnumSet<T,minValue,limitValue>& operator=(const EnumSet<T,minValue,limitValue>& other) {
+        fBools = other.fBools;
+        return *this;
+    }
+  
+    inline uint32_t getAll() const {
+        return fBools; 
+    }
+
+private:
+    inline uint32_t flag(T toCheck) const { return (1<<(toCheck-minValue)); }
+private:
+    uint32_t fBools;
+};
+
+U_NAMESPACE_END
+
+#endif /* U_SHOW_CPLUSPLUS_API */
+#endif /* ENUMSET_H */
