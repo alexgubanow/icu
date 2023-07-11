@@ -75,6 +75,11 @@
 #define ALL_TAG_NUM 1
 #define EMPTY_TAG_NUM 0
 
+
+#ifndef UPRV_LENGTHOF
+#define UPRV_LENGTHOF(array) (int32_t)(sizeof(array)/sizeof((array)[0]))
+#endif
+
 /* UDataInfo cf. udata.h */
 static const UDataInfo dataInfo={
     sizeof(UDataInfo),
