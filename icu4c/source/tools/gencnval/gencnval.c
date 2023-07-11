@@ -352,7 +352,7 @@ parseFile(FileStream *in) {
 
         if (validParse || lineSize > 0) {
             if (isspace((int)*line)) {
-                //fprintf(stderr, "*line '%c' 0x%hhx (int)*line '%c' 0x%hhx\n", *line, *line, (int)*line, (int)*line);
+                fprintf(stderr, "*line '%c' 0x%hhx (int)*line '%c' 0x%hhx\n", *line, *line, (int)*line, (int)*line);
                 fprintf(stderr, "%s:%d: error: cannot start an alias with a space\n", path, lineNum-1);
                 exit(U_PARSE_ERROR);
             } else if (line[0] == '{') {
@@ -585,22 +585,22 @@ addOfficialTaggedStandards(char *line, int32_t lineLen) {
         fprintf(stderr, "%s:%d: error: official tags already added\n", path, lineNum);
         exit(U_BUFFER_OVERFLOW_ERROR);
     }
-    #ifdef __MVS__
+    // #ifdef __MVS__
     tag = strchr(line, 0xc0);
-    #else
-    tag = strchr(line, '{');
-    #endif
+    // #else
+    // tag = strchr(line, '{');
+    // #endif
     if (tag == NULL) {
         /* Why were we called? */
         fprintf(stderr, "%s:%d: error: Missing start of tag group\n", path, lineNum);
         exit(U_PARSE_ERROR);
     }
     tag++;
-    #ifdef __MVS__
+    // #ifdef __MVS__
     tag = strchr(line, 0xd0);
-    #else
-    tag = strchr(line, '}');
-    #endif
+    // #else
+    // tag = strchr(line, '}');
+    // #endif
     if (endTagExp == NULL) {
         fprintf(stderr, "%s:%d: error: Missing end of tag group\n", path, lineNum);
         exit(U_PARSE_ERROR);
