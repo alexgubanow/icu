@@ -577,7 +577,7 @@ addOfficialTaggedStandards(char *line, int32_t lineLen) {
     char *endTagExp;
     char *tag;
     static const char WHITESPACE[] = " \t";
-
+    printf(stderr, "processing '%s'\n", line);
     if (tagCount > UCNV_NUM_RESERVED_TAGS) {
         fprintf(stderr, "%s:%d: error: official tags already added\n", path, lineNum);
         exit(U_BUFFER_OVERFLOW_ERROR);
