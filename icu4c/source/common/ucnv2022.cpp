@@ -3738,7 +3738,7 @@ static const UConverterImpl _ISO2022Impl={
     NULL,
 
     NULL,
-    _ISO2022getName,
+    (UConverterGetName)_ISO2022getName,
     _ISO_2022_WriteSub,
     _ISO_2022_SafeClone,
     _ISO_2022_GetUnicodeSet,
@@ -3784,17 +3784,17 @@ static const UConverterImpl _ISO2022JPImpl={
     (UConverterClose)_ISO2022Close,
     (UConverterReset)_ISO2022Reset,
 
-    UConverter_toUnicode_ISO_2022_JP_OFFSETS_LOGIC,
-    UConverter_toUnicode_ISO_2022_JP_OFFSETS_LOGIC,
-    UConverter_fromUnicode_ISO_2022_JP_OFFSETS_LOGIC,
-    UConverter_fromUnicode_ISO_2022_JP_OFFSETS_LOGIC,
+    (UConverterToUnicode)UConverter_toUnicode_ISO_2022_JP_OFFSETS_LOGIC,
+    (UConverterToUnicode)UConverter_toUnicode_ISO_2022_JP_OFFSETS_LOGIC,
+    (UConverterFromUnicode)UConverter_fromUnicode_ISO_2022_JP_OFFSETS_LOGIC,
+    (UConverterFromUnicode)UConverter_fromUnicode_ISO_2022_JP_OFFSETS_LOGIC,
     NULL,
 
     NULL,
-    _ISO2022getName,
-    _ISO_2022_WriteSub,
-    _ISO_2022_SafeClone,
-    _ISO_2022_GetUnicodeSet,
+    (UConverterGetName)_ISO2022getName,
+    (UConverterWriteSub)_ISO_2022_WriteSub,
+    (UConverterSafeClone)_ISO_2022_SafeClone,
+    (UConverterGetUnicodeSet)_ISO_2022_GetUnicodeSet,
 
     NULL,
     NULL
@@ -3842,17 +3842,17 @@ static const UConverterImpl _ISO2022KRImpl={
     (UConverterClose)_ISO2022Close,
     (UConverterReset)_ISO2022Reset,
 
-    UConverter_toUnicode_ISO_2022_KR_OFFSETS_LOGIC,
-    UConverter_toUnicode_ISO_2022_KR_OFFSETS_LOGIC,
-    UConverter_fromUnicode_ISO_2022_KR_OFFSETS_LOGIC,
-    UConverter_fromUnicode_ISO_2022_KR_OFFSETS_LOGIC,
+    (UConverterToUnicode)UConverter_toUnicode_ISO_2022_KR_OFFSETS_LOGIC,
+    (UConverterToUnicode)UConverter_toUnicode_ISO_2022_KR_OFFSETS_LOGIC,
+    (UConverterFromUnicode)UConverter_fromUnicode_ISO_2022_KR_OFFSETS_LOGIC,
+    (UConverterFromUnicode)UConverter_fromUnicode_ISO_2022_KR_OFFSETS_LOGIC,
     NULL,
 
     NULL,
-    _ISO2022getName,
-    _ISO_2022_WriteSub,
-    _ISO_2022_SafeClone,
-    _ISO_2022_GetUnicodeSet,
+    (UConverterGetName)_ISO2022getName,
+    (UConverterWriteSub)_ISO_2022_WriteSub,
+    (UConverterSafeClone)_ISO_2022_SafeClone,
+    (UConverterGetUnicodeSet)_ISO_2022_GetUnicodeSet,
 
     NULL,
     NULL
@@ -3901,17 +3901,17 @@ static const UConverterImpl _ISO2022CNImpl={
     (UConverterClose)_ISO2022Close,
     (UConverterReset)_ISO2022Reset,
 
-    UConverter_toUnicode_ISO_2022_CN_OFFSETS_LOGIC,
-    UConverter_toUnicode_ISO_2022_CN_OFFSETS_LOGIC,
-    UConverter_fromUnicode_ISO_2022_CN_OFFSETS_LOGIC,
-    UConverter_fromUnicode_ISO_2022_CN_OFFSETS_LOGIC,
+    (UConverterToUnicode)UConverter_toUnicode_ISO_2022_CN_OFFSETS_LOGIC,
+    (UConverterToUnicode)UConverter_toUnicode_ISO_2022_CN_OFFSETS_LOGIC,
+    (UConverterFromUnicode)UConverter_fromUnicode_ISO_2022_CN_OFFSETS_LOGIC,
+    (UConverterFromUnicode)UConverter_fromUnicode_ISO_2022_CN_OFFSETS_LOGIC,
     NULL,
 
     NULL,
-    _ISO2022getName,
-    _ISO_2022_WriteSub,
-    _ISO_2022_SafeClone,
-    _ISO_2022_GetUnicodeSet,
+    (UConverterGetName)_ISO2022getName,
+    (UConverterWriteSub)_ISO_2022_WriteSub,
+    (UConverterSafeClone)_ISO_2022_SafeClone,
+    (UConverterGetUnicodeSet)_ISO_2022_GetUnicodeSet,
 
     NULL,
     NULL
