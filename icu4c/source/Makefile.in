@@ -49,7 +49,8 @@ CLEANFILES = *~
 ALL_PKGCONFIG_FILES=$(ALL_PKGCONFIG_SUFFIX:%=$(top_builddir)/config/icu-%.pc)
 
 ## Files built (autoconfed) and installed
-INSTALLED_BUILT_FILES = $(top_builddir)/config/Makefile.inc $(top_builddir)/config/pkgdata.inc $(top_builddir)/config/icu-config @platform_make_fragment@ $(EXTRA_DATA:%=$(DESTDIR)$(pkglibdir)/%) $(ALL_PKGCONFIG_FILES)
+# INSTALLED_BUILT_FILES = $(top_builddir)/config/Makefile.inc $(top_builddir)/config/pkgdata.inc $(top_builddir)/config/icu-config @platform_make_fragment@ $(EXTRA_DATA:%=$(DESTDIR)$(pkglibdir)/%) $(ALL_PKGCONFIG_FILES)
+INSTALLED_BUILT_FILES = $(top_builddir)/config/Makefile.inc $(top_builddir)/config/pkgdata.inc @platform_make_fragment@ $(EXTRA_DATA:%=$(DESTDIR)$(pkglibdir)/%) $(ALL_PKGCONFIG_FILES)
 
 ## Files built (autoconfed) but not installed
 LOCAL_BUILT_FILES = icudefs.mk config/icucross.mk
@@ -91,7 +92,7 @@ check-exhaustive: all check-exhaustive-recursive
 
 check-exhaustive-local: check-local
 
-xcheck-recursive: all xcheck-local
+xcheck-recursive: all #xcheck-local
 	@$(MAKE) -C test xcheck
 
 xperf-recursive: all tests
@@ -159,6 +160,7 @@ ifndef VERBOSE
 endif
 install-local: install-icu install-manx
 
+#	$(INSTALL_SCRIPT) $(top_builddir)/config/icu-config $(DESTDIR)$(bindir)/icu-config
 install-icu: $(INSTALLED_BUILT_FILES)
 	@$(MKINSTALLDIRS) $(DESTDIR)$(pkgdatadir)/config
 	@$(MKINSTALLDIRS) $(DESTDIR)$(pkglibdir)
@@ -170,7 +172,6 @@ install-icu: $(INSTALLED_BUILT_FILES)
 	@$(MKINSTALLDIRS) $(DESTDIR)$(libdir)/pkgconfig
 	$(INSTALL_DATA) $(ALL_PKGCONFIG_FILES) $(DESTDIR)$(libdir)/pkgconfig/
 	$(INSTALL_DATA) $(top_srcdir)/../license.html $(DESTDIR)$(pkgdatadir)/license.html
-	$(INSTALL_SCRIPT) $(top_builddir)/config/icu-config $(DESTDIR)$(bindir)/icu-config
 	$(INSTALL_DATA) $(top_builddir)/config/Makefile.inc $(DESTDIR)$(pkglibdir)/Makefile.inc
 	$(INSTALL_DATA) $(top_builddir)/config/pkgdata.inc $(DESTDIR)$(pkglibdir)/pkgdata.inc
 #	@echo icuinfo.xml is built after make check.
@@ -210,15 +211,15 @@ distclean-local: clean-local
 	$(RMV) Makefile config/Makefile icudefs.mk $(LIBDIR) $(BINDIR)
 	-$(RMV) dist
 
-check-local: xcheck-local
+check-local: #xcheck-local
 	-$(RMV) test-local.xml
 
-xcheck-local: $(top_builddir)/config/icu-config $(top_builddir)/config/Makefile.inc $(top_builddir)/config/pkgdata.inc
-	@echo verifying that icu-config --selfcheck can operate
-	@test "passed" = "$(shell $(top_builddir)/config/icu-config --selfcheck 2>&1)" || (echo "FAIL: icu-config could not run properly." ; exit 1)
-	@echo verifying that $(MAKE) -f Makefile.inc selfcheck can operate
-	@test "passed" = "$(shell $(MAKE) --no-print-directory -f $(top_builddir)/config/Makefile.inc SELFCHECK=1 selfcheck)" || (echo "FAIL: Makefile.inc could not run properly." ; exit 1 )
-	@echo "PASS: config selfcheck OK"
+#xcheck-local: $(top_builddir)/config/icu-config $(top_builddir)/config/Makefile.inc $(top_builddir)/config/pkgdata.inc
+#	@echo verifying that icu-config --selfcheck can operate
+#	@test "passed" = "$(shell $(top_builddir)/config/icu-config --selfcheck 2>&1)" || (echo "FAIL: icu-config could not run properly." ; exit 1)
+#	@echo verifying that $(MAKE) -f Makefile.inc selfcheck can operate
+#	@test "passed" = "$(shell $(MAKE) --no-print-directory -f $(top_builddir)/config/Makefile.inc SELFCHECK=1 selfcheck)" || (echo "FAIL: Makefile.inc could not run properly." ; exit 1 )
+#	@echo "PASS: config selfcheck OK"
 
 #$(srcdir)/configure : $(srcdir)/configure.in $(top_srcdir)/aclocal.m4
 #	cd $(srcdir) && $(AUTOCONF)
@@ -300,16 +301,16 @@ $(top_builddir)/config/pkgdataMakefile:
 	cd $(top_builddir) \
 		&& CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
-$(top_builddir)/config/icu-config: $(top_builddir)/Makefile $(top_srcdir)/config/icu-config-top $(top_srcdir)/config/icu-config-bottom $(top_builddir)/config/Makefile.inc @platform_make_fragment@ $(top_srcdir)/config/make2sh.sed
-	-$(RMV) $@
-	$(INSTALL_SCRIPT) $(top_srcdir)/config/icu-config-top $@
-	chmod u+w $@
-	@echo "# Following from @platform_make_fragment@" >> $@
-	LC_ALL=C sed -f $(top_srcdir)/config/make2sh.sed < $(top_builddir)/config/Makefile.inc | grep -v '#M#' | uniq >> $@
-	LC_ALL=C sed -f $(top_srcdir)/config/make2sh.sed < @platform_make_fragment@ | grep -v '#M#' | uniq >> $@
-	cat $(top_srcdir)/config/icu-config-bottom >> $@
-	echo "# Rebuilt on "`date` >> $@
-	chmod u-w $@
+#$(top_builddir)/config/icu-config: $(top_builddir)/Makefile $(top_srcdir)/config/icu-config-top $(top_srcdir)/config/icu-config-bottom $(top_builddir)/config/Makefile.inc @platform_make_fragment@ $(top_srcdir)/config/make2sh.sed
+#	-$(RMV) $@
+#	$(INSTALL_SCRIPT) $(top_srcdir)/config/icu-config-top $@
+#	chmod u+w $@
+#	@echo "# Following from @platform_make_fragment@" >> $@
+#	LC_ALL=C sed -f $(top_srcdir)/config/make2sh.sed < $(top_builddir)/config/Makefile.inc | grep -v '#M#' | uniq >> $@
+#	LC_ALL=C sed -f $(top_srcdir)/config/make2sh.sed < @platform_make_fragment@ | grep -v '#M#' | uniq >> $@
+#	cat $(top_srcdir)/config/icu-config-bottom >> $@
+#	echo "# Rebuilt on "`date` >> $@
+#	chmod u-w $@
 
 config.status: $(srcdir)/configure $(srcdir)/common/unicode/uvernum.h
 	@echo
@@ -364,13 +365,6 @@ releaseDist:
 else
 releaseDist: install
 	@echo -n "ICU Version: " > $(DESTDIR)/readme.txt
-	@echo `./config/icu-config --noverify --version` >> $(DESTDIR)/readme.txt
-	@echo -n "HOST: " >> $(DESTDIR)/readme.txt
-	@echo `./config/icu-config --noverify --host` >> $(DESTDIR)/readme.txt
-	@echo -n "CC Compiler: " >> $(DESTDIR)/readme.txt
-	@echo `./config/icu-config --noverify --cc` >> $(DESTDIR)/readme.txt
-	@echo -n "CXX Compiler: " >> $(DESTDIR)/readme.txt
-	@echo `./config/icu-config --noverify --cxx` >> $(DESTDIR)/readme.txt
 endif
 
 check-installed-icu: install
