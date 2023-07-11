@@ -3720,7 +3720,7 @@ static const UConverterImpl _ISO2022Impl={
     NULL,
     NULL,
 
-    _ISO2022Open,
+    (UConverterOpen)_ISO2022Open,
     _ISO2022Close,
     _ISO2022Reset,
 
@@ -3780,7 +3780,7 @@ static const UConverterImpl _ISO2022JPImpl={
     NULL,
     NULL,
 
-    _ISO2022Open,
+    (UConverterOpen)_ISO2022Open,
     _ISO2022Close,
     _ISO2022Reset,
 
@@ -3838,7 +3838,7 @@ static const UConverterImpl _ISO2022KRImpl={
     NULL,
     NULL,
 
-    _ISO2022Open,
+    (UConverterOpen)_ISO2022Open,
     _ISO2022Close,
     _ISO2022Reset,
 
@@ -3897,7 +3897,7 @@ static const UConverterImpl _ISO2022CNImpl={
     NULL,
     NULL,
 
-    _ISO2022Open,
+    (UConverterOpen)_ISO2022Open,
     _ISO2022Close,
     _ISO2022Reset,
 
