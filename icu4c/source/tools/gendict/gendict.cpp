@@ -53,10 +53,10 @@ const char *wOutname="(some file)";
 const int firstSeconds = 5; /* seconds between notices*/
 const int nextSeconds = 15; /* seconds between notices*/
 
-static void alarm_fn(int /*n*/) {
+void alarm_fn(int /*n*/) {
   printf("%s: still writing\t%s (%ds)\t...\n",    wToolname, wOutname, elapsedTime());
   
-  signal(SIGALRM, (void (*)(int))&alarm_fn);
+  signal(SIGALRM, &alarm_fn);
   alarm(nextSeconds); // reset the alarm
 }
 
@@ -67,7 +67,7 @@ static void install_watchdog(const char *toolName, const char *outFileName) {
   if(startTime<0) { // uninitialized
     startTime = uprv_getRawUTCtime();
   }
-  signal(SIGALRM, (void (*)(int))&alarm_fn);
+  signal(SIGALRM, &alarm_fn);
 
   alarm(firstSeconds); // set the alarm
 }

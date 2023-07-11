@@ -68,7 +68,7 @@ SHAREDLIBCXXFLAGS	= -Wc,expo
 # -+ means accept any file extension as a C++ file. By default only .C is accepted.
 CFLAGS          += -Wc,DLL,ROS,RENT,'ARCH(7)','LOC(POSIX)',NOANSIALIAS,LONGNAME,'CHARS(SIGNED)','LANGLVL(STDC99)' $(ICU_IEEE)
 CXXFLAGS        += -Wc,DLL,ROS,RTTI,'ARCH(7)','LOC(POSIX)',NOANSIALIAS,LONGNAME,'CHARS(SIGNED)','LANGLVL(EXTENDED0X)' $(ICU_IEEE) -+
-DEFS            += -D_XOPEN_SOURCE=600 -D_ISOC99_SOURCE
+DEFS            += -D_XOPEN_SOURCE=600 -D_ISOC99_SOURCE -D_POSIX_SOURCE
 ARFLAGS         = -cr
 
 # _MSE_PROTOS usually interacts with _XOPEN_SOURCE. It affects some standard
