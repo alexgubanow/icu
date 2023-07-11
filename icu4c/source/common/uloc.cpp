@@ -1505,7 +1505,7 @@ static const UEnumeration gKeywordsEnum = {
     uloc_kw_closeKeywords,
     uloc_kw_countKeywords,
     uenum_unextDefault,
-    uloc_kw_nextKeyword,
+    (UEnumNext *)uloc_kw_nextKeyword,
     uloc_kw_resetKeywords
 };
 
