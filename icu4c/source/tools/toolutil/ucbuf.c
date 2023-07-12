@@ -263,9 +263,9 @@ ucbuf_fillucbuf( UCHARBUF* buf,UErrorCode* error){
 
             if(buf->showWarning ==TRUE){
                 /* print out the context */
-                fprintf(stderr,"\tPre-context: '%s' 0x%x%x%x%x\n",preContext,preContext[0],preContext[1],preContext[2],preContext[3]);
-                fprintf(stderr,"\tContext: '%s' 0x%x%x%x%x\n",context,context[0],context[1],context[2],context[3]);
-                fprintf(stderr,"\tPost-context: '%s' 0x%x%x%x%x\n", postContext,postContext[0],postContext[1],postContext[2],postContext[3]);
+                fprintf(stderr,"\tPre-context: '%s' %x %x %x %x\n",preContext,preContext[0],preContext[1],preContext[2],preContext[3]);
+                fprintf(stderr,"\tContext: '%s' %x %x %x %x\n",context,context[0],context[1],context[2],context[3]);
+                fprintf(stderr,"\tPost-context: '%s' %x %x %x %x\n", postContext,postContext[0],postContext[1],postContext[2],postContext[3]);
             }
 
             /* reset the converter */
