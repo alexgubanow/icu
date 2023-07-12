@@ -30,6 +30,7 @@ icu4c/source/data/brkitr/*.txt binary
 icu4c/source/data/brkitr/root.txt zos-working-tree-encoding=ibm-1047 git-encoding=iso8859-1
 
 icu4c/source/data/locales/*.txt binary
+icu4c/source/data/locales/root.txt zos-working-tree-encoding=ibm-1047 git-encoding=iso8859-1
 
 icu4c/source/data/coll/*.txt binary
 icu4c/source/data/rbnf/*.txt binary
