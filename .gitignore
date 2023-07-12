@@ -1,8 +1,11 @@
+*.bak
+
 icu4c/bin
 icu4c/bin64
 icu4c/include
 icu4c/lib
 icu4c/lib64
+icu4c/source/configure
 icu4c/source/Doxyfile
 icu4c/source/Makefile
 icu4c/source/README
