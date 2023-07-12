@@ -26,10 +26,21 @@
 *.utf16be binary
 *.UTF16BE binary
 
-icu4c/source/data/brkitr/cjdict.txt binary
-icu4c/source/data/brkitr/khmerdict.txt binary
-icu4c/source/data/brkitr/thaidict.txt binary
+icu4c/source/data/brkitr/*.txt binary
+icu4c/source/data/brkitr/root.txt zos-working-tree-encoding=ibm-1047 git-encoding=iso8859-1
+
 icu4c/source/data/locales/*.txt binary
+
+icu4c/source/data/coll/*.txt binary
+icu4c/source/data/rbnf/*.txt binary
+icu4c/source/data/mappings/*.txt binary
+
+icu4c/source/data/misc/*.txt binary
+icu4c/source/data/misc/supplementalData.txt zos-working-tree-encoding=ibm-1047 git-encoding=iso8859-1
+
+icu4c/source/data/translit/*.txt binary
+icu4c/source/data/unidata/*.txt binary
+icu4c/source/test/testdata/*.txt binary
 
 # The following file types are stored in Git-LFS.
 *.jar filter=lfs diff=lfs merge=lfs -text
