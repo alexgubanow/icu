@@ -684,7 +684,6 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
             /* sort the table so that it can be turned into UTF-8-friendly data */
             ucm_sortTable(data->ucm->base);
         }
-    fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
 
         if(U_SUCCESS(*pErrorCode)) {
             if(
