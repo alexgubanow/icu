@@ -7,6 +7,8 @@
 .gitattributes   zos-working-tree-encoding=iso8859-1 git-encoding=iso8859-1
 .gitignore       zos-working-tree-encoding=iso8859-1 git-encoding=iso8859-1
 
+icu4c/source/data/brkitr/*.txt zos-working-tree-encoding=iso8859-1 git-encoding=iso8859-1
+
 *.c text !eol
 *.cc text !eol
 *.classpath text !eol
