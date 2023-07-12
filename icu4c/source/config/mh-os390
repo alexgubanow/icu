@@ -66,8 +66,8 @@ SHAREDLIBCXXFLAGS	= -Wc,expo
 # The DLL option must be used by the callee and caller code when using shared libraries.
 # NOCSECT might be used as an optimization option.
 # -+ means accept any file extension as a C++ file. By default only .C is accepted.
-CFLAGS          += -Wc,DLL,ROS,RENT,'LOC(POSIX)',NOANSIALIAS,LONGNAME,'LANGLVL(STDC99)' $(ICU_IEEE)
-CXXFLAGS        += -Wc,DLL,ROS,RTTI,'LOC(POSIX)',NOANSIALIAS,LONGNAME,'LANGLVL(EXTENDED0X)' $(ICU_IEEE) -+
+CFLAGS          += -Wc,DLL,RENT,'LOC(POSIX)',NOANSIALIAS,LONGNAME,'LANGLVL(STDC99)' $(ICU_IEEE)
+CXXFLAGS        += -Wc,DLL,RTTI,'LOC(POSIX)',NOANSIALIAS,LONGNAME,'LANGLVL(EXTENDED0X)' $(ICU_IEEE) -+
 DEFS            += -D_XOPEN_SOURCE=600 -D_ISOC99_SOURCE -D_POSIX_SOURCE
 ARFLAGS         = -cr
 
