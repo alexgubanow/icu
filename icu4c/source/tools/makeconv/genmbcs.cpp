@@ -153,7 +153,6 @@ MBCSInit(MBCSData *mbcsData, UCMFile *ucm) {
     mbcsData->ucm=ucm; /* aliased, not owned */
 
     mbcsData->newConverter.close=MBCSClose;
-    fprintf(stderr, "MBCSIsValid %p\n", MBCSIsValid);
     mbcsData->newConverter.isValid=MBCSIsValid;
     mbcsData->newConverter.addTable=MBCSAddTable;
     mbcsData->newConverter.write=MBCSWrite;
@@ -550,7 +549,6 @@ static UBool
 MBCSIsValid(NewConverter *cnvData,
             const uint8_t *bytes, int32_t length) {
     MBCSData *mbcsData=(MBCSData *)cnvData;
-    fprintf(stderr, "inside MBCSIsValid %p\n");
 
     return (UBool)(1==ucm_countChars(&mbcsData->ucm->states, bytes, length));
 }

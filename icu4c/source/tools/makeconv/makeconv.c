@@ -639,38 +639,31 @@ createConverter(ConvData *data, const char *converterName, UErrorCode *pErrorCod
     UConverterStaticData *staticData;
     UCMStates *states, *baseStates;
 
-    fprintf(stderr, "createConverter\n");
     if(U_FAILURE(*pErrorCode)) {
         return;
     }
 
     initConvData(data);
-    fprintf(stderr, "after initConvData\n");
 
     dataIsBase=readFile(data, converterName, pErrorCode);
     if(U_FAILURE(*pErrorCode)) {
         return;
     }
-    fprintf(stderr, "after readFile\n");
 
     staticData=&data->staticData;
     states=&data->ucm->states;
 
     if(dataIsBase) {
-    fprintf(stderr, "after if(dataIsBase)\n");
         /*
          * Build a normal .cnv file with a base table
          * and an optional extension table.
          */
         data->cnvData=MBCSOpen(data->ucm);
-    fprintf(stderr, "after MBCSOpen\n");
         if(data->cnvData==NULL) {
             *pErrorCode=U_MEMORY_ALLOCATION_ERROR;
 
         } 
-    fprintf(stderr, "data->cnvData->isValid %p\n", data->cnvData->isValid);
         UBool st = data->cnvData->isValid(data->cnvData, staticData->subChar, staticData->subCharLen);
-    fprintf(stderr, "after data->cnvData->isValid\n");
         if(!st)
         {
             fprintf(stderr, "       the substitution character byte sequence is illegal in this codepage structure!\n");
