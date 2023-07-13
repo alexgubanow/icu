@@ -37,6 +37,7 @@ icu4c/source/data/rbnf/*.txt binary
 icu4c/source/data/mappings/*.txt binary
 
 icu4c/source/data/misc/*.txt binary
+icu4c/source/data/misc/zoneinfo64.txt zos-working-tree-encoding=ibm-1047 git-encoding=iso8859-1
 icu4c/source/data/misc/supplementalData.txt zos-working-tree-encoding=ibm-1047 git-encoding=iso8859-1
 
 icu4c/source/data/translit/*.txt binary
