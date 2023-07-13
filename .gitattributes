@@ -34,7 +34,7 @@ icu4c/source/data/locales/root.txt zos-working-tree-encoding=ibm-1047 git-encodi
 
 icu4c/source/data/coll/*.txt binary
 icu4c/source/data/rbnf/*.txt binary
-icu4c/source/data/mappings/*.txt binary
+icu4c/source/data/mappings/*.ucm binary
 
 icu4c/source/data/misc/*.txt binary
 icu4c/source/data/misc/zoneinfo64.txt zos-working-tree-encoding=ibm-1047 git-encoding=iso8859-1
