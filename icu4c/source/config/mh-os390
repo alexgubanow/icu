@@ -182,19 +182,12 @@ LIBICUIO=	$(top_builddir)/io/$(LIBICU)io$(ICULIBSUFFIX)$(SO_TARGET_VERSION).x
 LIBCTESTFW=	$(top_builddir)/tools/ctestfw/$(LIBICU)test$(ICULIBSUFFIX)$(SO_TARGET_VERSION).x
 LIBICUTOOLUTIL=	$(top_builddir)/tools/toolutil/$(LIBICU)tu$(ICULIBSUFFIX)$(SO_TARGET_VERSION).x
 
+SO = so
 ifneq (${ICUDATA_CHAR},e)
-#SH# if [ "$ICUDATA_CHAR" != "e" ]; then
 ## We're in ASCII mode.
 CFLAGS		+= -Wc,'ascii'
 CXXFLAGS	+= -Wc,'ascii'
-SO = so
-else
-#SH# else
-## We're in EBCDIC mode.
-## Shared object suffix
-SO = dll
 endif
-#SH# fi
 
 ## Special 390 rules
 
