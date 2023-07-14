@@ -103,8 +103,9 @@ then
 fi
 
 # Go.
-alias sed='/bin/sed'
+echo 'aclocal'
 aclocal
+echo 'autoreconf -i -f'
 autoreconf -i -f
 rm -f config.cache
 rm -f config.log
@@ -119,7 +120,7 @@ then
     then
         configuredir=.
     else
-        configuredir=`echo $0 | sed 's,[^/]*$,,'`
+        configuredir=`echo $0 | /bin/sed 's,[^/]*$,,'`
         if test x$configuredir = x$0
         then
             configuredir=.
