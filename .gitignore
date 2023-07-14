@@ -1,5 +1,6 @@
 *.d
 *.o
+*.bak
 Makefile
 
 icu4c/bin
