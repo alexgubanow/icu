@@ -68,8 +68,8 @@ SHAREDLIBCXXFLAGS	= -Wc,expo
 # The DLL option must be used by the callee and caller code when using shared libraries.
 # NOCSECT might be used as an optimization option.
 # -+ means accept any file extension as a C++ file. By default only .C is accepted.
-CFLAGS          += -Wc,DLL,ROS,RENT,'ARCH(7)','LOC(POSIX)',NOANSIALIAS,'LANGLVL(EXTENDED)' $(ICU_IEEE)
-CXXFLAGS        += -Wc,DLL,ROS,RTTI,'ARCH(7)','LOC(POSIX)',NOANSIALIAS,'LANGLVL(EXTENDED)' $(ICU_IEEE) -+
+CFLAGS          += -Wc,DLL,ROS,RENT,ILP32,NOANSIALIAS,'LANGLVL(EXTENDED)' $(ICU_IEEE)
+CXXFLAGS        += -Wc,DLL,ROS,RTTI,ILP32,NOANSIALIAS,'LANGLVL(EXTENDED0X)' $(ICU_IEEE) -+
 ARFLAGS         = -cr
 
 # _MSE_PROTOS usually interacts with _XOPEN_SOURCE. It affects some standard
@@ -104,8 +104,8 @@ COMPILE.c       = $(COMPILE_LINK_ENVVAR) $(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) $(I
 COMPILE.cc      = $(COMPILE_LINK_ENVVAR) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) $(ICU_XPLINK_CXX) -c
 
 # Commands to link
-LINK.c=		$(COMPILE_LINK_ENVVAR) $(CC) $(CFLAGS) -Wl,dll $(LDFLAGS) $(ICU_XPLINK_L)
-LINK.cc=	$(COMPILE_LINK_ENVVAR) $(CXX) $(CXXFLAGS) -Wl,dll $(LDFLAGS) $(ICU_XPLINK_L)
+LINK.c=		$(COMPILE_LINK_ENVVAR) $(CC) $(CFLAGS) -Wl,dll,xplink,ILP32 $(LDFLAGS) $(ICU_XPLINK_L)
+LINK.cc=	$(COMPILE_LINK_ENVVAR) $(CXX) $(CXXFLAGS) -Wl,dll,xplink,ILP32 $(LDFLAGS) $(ICU_XPLINK_L)
 
 ## Commands for shared library (dll)
 SHLIB.c=	$(LINK.c)

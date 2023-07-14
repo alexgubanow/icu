@@ -60,6 +60,7 @@ The following names can be supplied as the argument for platform:
     SolarisX86          Use the Sun cc/CC compilers on Solaris x86
     TRU64V5.1/CXX       Use the Compaq cxx compiler on Tru64 (OSF)
     zOS                 Use the IBM cxx compiler on z/OS (os/390)
+    zOS_clang           Use the IBM xlclang compiler on z/OS (os/390)
     zOSV1R2             Use the IBM cxx compiler for z/OS 1.2
 EOE
     fi
@@ -102,7 +103,9 @@ then
 fi
 
 # Go.
-
+alias sed='/bin/sed'
+aclocal
+autoreconf -i -f
 rm -f config.cache
 rm -f config.log
 rm -f config.status
@@ -354,6 +357,14 @@ case $platform in
         CXX=xlC; export CXX
         RELEASE_CFLAGS="-O2 -Wc,'inline(AUTO,NOREPORT,1000,8000)'"
         RELEASE_CXXFLAGS="-O2 -Wc,'inline(AUTO,NOREPORT,1000,8000)'"
+        ;;
+    zOS_clang)
+        THE_OS="z/OS (OS/390)"
+        THE_COMP="z/OS XLclang"
+        CC=xlclang; export CC
+        CXX=xlC; export CXX
+        RELEASE_CFLAGS="-O2 -Wc,'inline(AUTO,NOREPORT,1000,8000)','xplink(backchain,storeargs)',goff"
+        RELEASE_CXXFLAGS="-O2 -Wc,'inline(AUTO,NOREPORT,1000,8000)','xplink(backchain,storeargs)',goff,NOTEMPINC"
         ;;
     zOSV1R2)
         THE_OS="z/OS 1.2"
