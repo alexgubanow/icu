@@ -90,8 +90,10 @@ endif
 
 ## OS390BATCH
 ifeq (${OS390BATCH},1)
-DEFS            += -DOS390BATCH#M#
+DEFS+=-DOS390BATCH
 endif
+
+SYSLIBS="//'CEE.SCEELIB(CELHS003)'" "//'CEE.SCEELIB(CELHSCPP)'" "//'CEE.SCEELIB(CELHS001)'" "//'CEE.SCEELIB(C128)'"
 
 ## Commands to generate dependency files
 GEN_DEPS.c=	makedep                        
@@ -101,12 +103,14 @@ COMPILE.c       = $(COMPILE_LINK_ENVVAR) $(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c
 COMPILE.cc      = $(COMPILE_LINK_ENVVAR) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) -c
 
 # Commands to link
-LINK.c=		$(COMPILE_LINK_ENVVAR) $(CC) $(CFLAGS) -Wl,dll $(LDFLAGS)
+LINK.c=		$(COMPILE_LINK_ENVVAR) $(CC) -Wl,dll $(LDFLAGS)
 LINK.cc=	$(COMPILE_LINK_ENVVAR) $(CXX) $(CXXFLAGS) -Wl,dll $(LDFLAGS)
 
 ## Commands for shared library (dll)
-SHLIB.c=	$(LINK.c)
-SHLIB.cc=	$(LINK.cc)
+SHLIB.c=	$(COMPILE_LINK_ENVVAR) ld -S "//'CEE.SCEEBND2'" -S "//'CBC.SCCNOBJ'" -S "//'SYS1.CSSLIB'" -b AMODE=31 -b DYNAM=DLL -b REUS=RENT -b EDIT=YES -b CALL=YES \
+	-b CASE=MIXED -v $(SYSLIBS)
+SHLIB.cc=	$(COMPILE_LINK_ENVVAR) ld -S "//'CEE.SCEEBND2'" -S "//'CBC.SCCNOBJ'" -S "//'SYS1.CSSLIB'" -b AMODE=31 -b DYNAM=DLL -b REUS=RENT -b EDIT=YES -b CALL=YES \
+	-b CASE=MIXED -v $(SYSLIBS)
 
 ## Compiler switch to embed a runtime search path
 LD_RPATH=	-I
@@ -132,7 +136,7 @@ STATIC_O = o
 ifeq ($(OS390_STUBDATA),1)
 ## Suffix of the subset data library for dual common library support
 STUB_SUFFIX=_stub#M#
-DEFS      += -DOS390_STUBDATA -DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"#M#
+DEFS+= -DOS390_STUBDATA -DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"#M#
 endif
 
 ifeq ($(OS390BATCH),1)
