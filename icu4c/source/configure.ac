@@ -491,7 +491,8 @@ else
 	AC_MSG_ERROR([[C++ compiler $CXX does not work or no compiler found]])
 fi
 
-if [[ "$GXX" = yes ]]; then
+if [[ "$GXX" = yes ]] &&  [[ "$CXX" != xlclang++ ]]
+then
     # if CXXFLAGS does not have a "-std=" setting, set it now to -std=c++0x,
     # and check that the compiler still works.
     if ! echo "$CXXFLAGS" | grep '\-std=' >/dev/null 2>&1; then
@@ -512,6 +513,9 @@ if [[ "$GXX" = yes ]]; then
             ;;
         esac
     fi
+elif test "$GXX" = yes && test CXX = xlclang++
+then
+    GXX=no
 fi
 
 AC_MSG_CHECKING([[if #include <string> works]])
