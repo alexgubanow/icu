@@ -372,6 +372,8 @@ case $platform in
         RELEASE_CXXFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME,NOTEMPINC -std=gnu++11"
         export LOADEXP
         export LOADMOD
+        OS390BATCH=1; export OS390BATCH
+        OS390_XPLINK=1; export OS390_XPLINK
         ;;
     zOSV1R2)
         THE_OS="z/OS 1.2"

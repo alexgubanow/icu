@@ -851,7 +851,7 @@
  *
  * @stable ICU 2.0
  */
-#if U_PLATFORM == U_PF_OS390 && defined(__cplusplus)
+#if U_PLATFORM == U_PF_OS390 && defined(__cplusplus) && !defined(__clang__)
 #    define U_CALLCONV __cdecl
 #else
 #    define U_CALLCONV U_EXPORT2
