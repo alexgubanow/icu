@@ -485,12 +485,8 @@ AC_DEFUN([AC_CHECK_STRICT_COMPILE],
                 CFLAGS="$CFLAGS -W4" ;;
             esac
         fi
-        if test "$GXX" = yes && test CXX != xlclang++
+        if test "$GXX" = yes
         then
-            CXXFLAGS="$CXXFLAGS -W -Wall -pedantic -Wpointer-arith -Wwrite-strings -Wno-long-long"
-        elif test "$GXX" = yes && test CXX = xlclang++
-        then
-            GXX=no
             CXXFLAGS="$CXXFLAGS -Wall -pedantic -Wpointer-arith -Wwrite-strings -Wno-long-long"
         else
             case "${host}" in
