@@ -132,7 +132,7 @@ ifeq ($(BUILD_HOST_ICU),AIX_GCC)
 	$(SHLIB.c) $(LD_SONAME) $(OUTOPT)libicudata.so $^ $(LIBS)
 	mv libicudata.so $@
 else
-	$(SHLIB.c) $(LD_SONAME) $(OUTOPT)$@ $^ $(LIBS)
+	$(SHLIB.c) $(LD_SONAME) -x $(LIBICUDT) $(OUTOPT)$@ $^ $(LIBS)
 endif
 ifeq ($(ENABLE_RPATH),YES)
 ifneq ($(wildcard $(libdir)/$(MIDDLE_SO_TARGET)),)
@@ -142,7 +142,7 @@ endif
 
 ifeq ($(OS390BATCH),1)
 $(BATCH_STUB_TARGET): $(OBJECTS)
-	$(SHLIB.c) $(LD_SONAME) $(OUTOPT)$@ $^ $(LIBS)
+	$(SHLIB.c) $(LD_SONAME) -x $(BATCH_LIBICUDT) $(OUTOPT)$@ $^ $(LIBS)
 endif   # OS390BATCH
 endif   # ENABLE_SHARED
 

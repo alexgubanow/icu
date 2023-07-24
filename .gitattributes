@@ -13,7 +13,7 @@
 .gitattributes   zos-working-tree-encoding=iso8859-1 git-encoding=iso8859-1
 .gitignore       zos-working-tree-encoding=iso8859-1 git-encoding=iso8859-1
 
-*.txt binary
+*.txt text
 *.brk binary
 *.BRK binary
 *.bin binary
