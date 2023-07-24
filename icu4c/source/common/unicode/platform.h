@@ -466,7 +466,7 @@
  * Attribute to specify the size of the allocated buffer for malloc-like functions
  * @internal
  */
-#if (defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))) || __has_attribute(alloc_size)
+#if !defined(__MVS__) && ((defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))) || __has_attribute(alloc_size))
 #   define U_ALLOC_SIZE_ATTR(X) __attribute__ ((alloc_size(X)))
 #   define U_ALLOC_SIZE_ATTR2(X,Y) __attribute__ ((alloc_size(X,Y)))
 #else
