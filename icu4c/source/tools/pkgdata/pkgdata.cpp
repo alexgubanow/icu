@@ -1428,8 +1428,9 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
 
 #if U_PLATFORM == U_PF_OS390
         char *env_tmp;
-        char PDS_LibName[512];
-        char PDS_Name[512];
+        char PDS_LibName[512] = "\0";
+        char PDS_SideDeckName[512] = "\0";
+        char PDS_Name[512] = "\0";
 
         PDS_Name[0] = 0;
         PDS_LibName[0] = 0;
@@ -1472,9 +1473,11 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
                     "(",
                     PDS_Name,
                     ")'\"");
-            sprintf(cmd, "%s %s -o %s %s %s%s %s %s",
+            sprintf(PDS_SideDeckName, "\"//'%s(%s)'\"", getenv("LOADEXP"), PDS_Name);
+            sprintf(cmd, "%s %s -x %s -o %s %s %s%s %s %s",
                    pkgDataFlags[GENLIB],
                    pkgDataFlags[LDICUDTFLAGS],
+                   PDS_SideDeckName,
                    PDS_LibName,
                    objectFile,
                    pkgDataFlags[LD_SONAME],
