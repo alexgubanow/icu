@@ -103,6 +103,10 @@ then
 fi
 
 # Go.
+echo "set LOADEXP to $USER.ICU.EXP"
+LOADEXP=$USER.ICU.EXP
+echo "set LOADMOD to $USER.ICU.LOAD"
+LOADMOD=$USER.ICU.LOAD
 echo 'aclocal'
 aclocal
 echo 'autoreconf -i -f'
@@ -366,6 +370,8 @@ case $platform in
         CXX=xlclang++; export CXX
         RELEASE_CFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME"
         RELEASE_CXXFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME,NOTEMPINC"
+        export LOADEXP
+        export LOADMOD
         ;;
     zOSV1R2)
         THE_OS="z/OS 1.2"
