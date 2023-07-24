@@ -97,11 +97,8 @@ endif
 GEN_DEPS.c=	makedep                        
 GEN_DEPS.cc=	makedep
 
-## Commands to compile
-# _CXX_STEPS="-1" is a prelink step when compiling C and C++, and
-# it's only needed for long function names
-COMPILE.c       = $(COMPILE_LINK_ENVVAR) $(CC) $(DEFS) $(CFLAGS) -c
-COMPILE.cc      = $(COMPILE_LINK_ENVVAR) $(CXX) $(DEFS) $(CXXFLAGS) -c
+COMPILE.c       = $(COMPILE_LINK_ENVVAR) $(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c
+COMPILE.cc      = $(COMPILE_LINK_ENVVAR) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) -c
 
 # Commands to link
 LINK.c=		$(COMPILE_LINK_ENVVAR) $(CC) $(CFLAGS) -Wl,dll $(LDFLAGS)
