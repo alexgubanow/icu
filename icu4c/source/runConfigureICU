@@ -103,8 +103,6 @@ then
 fi
 
 # Go.
-echo "you shall run export LOADEXP=$USER.ICU.EXP"
-echo "you shall run export LOADMOD=$USER.ICU.LOAD"
 echo 'aclocal'
 aclocal
 echo 'autoreconf -i -f'
@@ -368,6 +366,10 @@ case $platform in
         CXX=xlclang++; export CXX
         RELEASE_CFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME"
         RELEASE_CXXFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME,NOTEMPINC -std=gnu++11"
+        echo "you shall run export LOADEXP=$USER.ICU.EXP"
+        echo "you shall run export LOADMOD=$USER.ICU.LOAD"
+        echo "you shall run export OS390BATCH=1"
+        echo "you shall run export OS390_XPLINK=1"
         ;;
     zOSV1R2)
         THE_OS="z/OS 1.2"

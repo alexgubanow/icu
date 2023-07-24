@@ -36,6 +36,7 @@
 *.UTF16BE binary
 
 icu4c/source/common/rbbirpt.txt zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+icu4c/source/data/brkitr/rules/char.txt zos-working-tree-encoding=iso8859-1 git-encoding=utf-8
 icu4c/source/data/brkitr/rules/title.txt zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 icu4c/source/data/brkitr/rules/sent_el.txt zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 icu4c/source/data/brkitr/rules/sent.txt zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
