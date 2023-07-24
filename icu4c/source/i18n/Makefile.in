@@ -188,7 +188,7 @@ endif
 
 ifneq ($(ENABLE_SHARED),)
 $(SHARED_OBJECT): $(OBJECTS) $(SO_VERSION_DATA)
-	$(SHLIB.cc) $(LD_SONAME) $(OUTOPT)$@ $^ $(LIBS)
+	$(SHLIB.cc) $(LD_SONAME) -x $(LIBICUI18N) $(OUTOPT)$@ $^ $(LIBS)
 ifeq ($(ENABLE_RPATH),YES)
 ifneq ($(wildcard $(libdir)/$(MIDDLE_SO_TARGET)),)
 	$(warning RPATH warning: --enable-rpath means test programs may use existing $(libdir)/$(MIDDLE_SO_TARGET))

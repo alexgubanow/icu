@@ -109,8 +109,8 @@ LINK.c=$(LD_CMD)
 LINK.cc=$(LD_CMD)
 
 ## Commands for shared library (dll)
-SHLIB.c=$(LD_CMD) -x $(FINAL_IMPORT_LIB)
-SHLIB.cc=$(LD_CMD) -x $(FINAL_IMPORT_LIB)
+SHLIB.c=$(LD_CMD)
+SHLIB.cc=$(LD_CMD)
 
 ## Compiler switch to embed a runtime search path
 LD_RPATH=-I
