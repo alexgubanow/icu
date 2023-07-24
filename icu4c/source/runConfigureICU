@@ -364,8 +364,8 @@ case $platform in
         THE_COMP="z/OS XLclang"
         CC=xlclang; export CC
         CXX=xlclang++; export CXX
-        RELEASE_CFLAGS="-O2 -Wc,'inline(AUTO,NOREPORT,1000,8000)','xplink(backchain,storeargs)',goff"
-        RELEASE_CXXFLAGS="-O2 -Wc,'inline(AUTO,NOREPORT,1000,8000)','xplink(backchain,storeargs)',goff,NOTEMPINC"
+        RELEASE_CFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME"
+        RELEASE_CXXFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME,NOTEMPINC"
         ;;
     zOSV1R2)
         THE_OS="z/OS 1.2"
