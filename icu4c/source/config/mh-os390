@@ -84,7 +84,7 @@ ifeq (${OS390_XPLINK}, 1)
 # NOTEMPINC could be used if ICU starts using templates.
 ICU_XPLINK_C      = -Wc,'xplink(backchain,storeargs),goff'
 ICU_XPLINK_CXX    = -Wc,'xplink(backchain,storeargs),goff' -Wc,'NOTEMPINC'
-ICU_XPLINK_L      = -Wl,xplink,partition=large
+ICU_XPLINK_L      = -Wl,xplink
 #SH# fi
 endif
 
