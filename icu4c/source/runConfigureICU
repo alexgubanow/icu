@@ -369,7 +369,7 @@ case $platform in
         CC=xlclang; export CC
         CXX=xlclang++; export CXX
         RELEASE_CFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME"
-        RELEASE_CXXFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME,NOTEMPINC"
+        RELEASE_CXXFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME,NOTEMPINC -std=gnu++11"
         export LOADEXP
         export LOADMOD
         ;;
