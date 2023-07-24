@@ -92,7 +92,7 @@ ifeq (${OS390BATCH},1)
 DEFS+=-DOS390BATCH
 endif
 
-LIBS+="//'CEE.SCEELIB(CELHS003)'" "//'CEE.SCEELIB(CELHSCPP)'" "//'CEE.SCEELIB(CELHS001)'" "//'CEE.SCEELIB(C128)'"
+DEFAULT_LIBS+="//'CEE.SCEELIB(CELHS003)'" "//'CEE.SCEELIB(CELHSCPP)'" "//'CEE.SCEELIB(CELHS001)'" "//'CEE.SCEELIB(C128)'"
 BATCH_LIBS+="//'CEE.SCEELIB(CELHS003)'" "//'CEE.SCEELIB(CELHSCPP)'" "//'CEE.SCEELIB(CELHS001)'" "//'CEE.SCEELIB(C128)'"
 
 ## Commands to generate dependency files
@@ -113,22 +113,22 @@ SHLIB.cc=	$(COMPILE_LINK_ENVVAR) ld -S "//'CEE.SCEEBND2'" -S "//'CBC.SCCNOBJ'" -
 	-b CASE=MIXED -v -x $(FINAL_IMPORT_LIB)
 
 ## Compiler switch to embed a runtime search path
-LD_RPATH=	-I
+LD_RPATH=-I
 
 ## Environment variable to set a runtime search path
 LDLIBRARYPATH_ENVVAR = LIBPATH
 
 ## An import library (a.k.a. sidedeck) is needed for z/OS and MSVC
-IMPORT_LIB_EXT = .x
+IMPORT_LIB_EXT =.x
 
 ## Versioned target for a shared library.
-FINAL_SO_TARGET=  $(basename $(SO_TARGET))$(SO_TARGET_VERSION).$(SO)
-MIDDLE_SO_TARGET= $(basename $(SO_TARGET))$(SO_TARGET_VERSION_MAJOR).$(SO)
+FINAL_SO_TARGET=$(basename $(SO_TARGET))$(SO_TARGET_VERSION).$(SO)
+MIDDLE_SO_TARGET=$(basename $(SO_TARGET))$(SO_TARGET_VERSION_MAJOR).$(SO)
 
 ## Versioned import library names.
-IMPORT_LIB = $(basename $(notdir $(SO_TARGET)))$(IMPORT_LIB_EXT)#M#
-MIDDLE_IMPORT_LIB = $(basename $(notdir $(MIDDLE_SO_TARGET)))$(IMPORT_LIB_EXT)#M#
-FINAL_IMPORT_LIB = $(basename $(notdir $(FINAL_SO_TARGET)))$(IMPORT_LIB_EXT)#M#
+IMPORT_LIB =$(basename $(notdir $(SO_TARGET)))$(IMPORT_LIB_EXT)#M#
+MIDDLE_IMPORT_LIB =$(basename $(notdir $(MIDDLE_SO_TARGET)))$(IMPORT_LIB_EXT)#M#
+FINAL_IMPORT_LIB =$(basename $(notdir $(FINAL_SO_TARGET)))$(IMPORT_LIB_EXT)#M#
 
 ## Non-shared intermediate object suffix
 STATIC_O = o
@@ -136,7 +136,7 @@ STATIC_O = o
 ifeq ($(OS390_STUBDATA),1)
 ## Suffix of the subset data library for dual common library support
 STUB_SUFFIX=_stub#M#
-DEFS+= -DOS390_STUBDATA -DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"#M#
+DEFS+=-DOS390_STUBDATA -DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"#M#
 endif
 
 ifeq ($(OS390BATCH),1)
