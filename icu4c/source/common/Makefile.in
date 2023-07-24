@@ -217,7 +217,7 @@ endif
 
 ifeq ($(OS390BATCH),1)
 $(BATCH_TARGET):$(OBJECTS)
-	$(SHLIB.cc) $(LD_SONAME) $(OUTOPT)$@ $^ $(BATCH_LIBS)
+	$(SHLIB.cc) $(LD_SONAME) -x $(BATCH_LIBICUUC) $(OUTOPT)$@ $^ $(BATCH_LIBS)
 endif   # OS390BATCH
 endif   # ENABLE_SHARED
 
