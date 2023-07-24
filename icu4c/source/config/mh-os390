@@ -50,15 +50,15 @@ ICU_IEEE          =#M#
 endif
 
 ## Additional flags when building libraries and with threads
-THREADSCPPFLAGS = -D_OPEN_THREADS=3
+THREADSCPPFLAGS =-D_XOPEN_SOURCE_EXTENDED=1 -D_UNIX03_SOURCE -D_UNIX03_THREADS -D_POSIX_SOURCE -D_POSIX_THREADS
 
 # For a dynamically called DLL module to share access to the POSIX external
 # variables, with its caller, the DLL module must define these _SHR_* macros.
-SHAREDLIBCPPFLAGS	= -D_SHR_TZNAME -D_SHR_TIMEZONE
+SHAREDLIBCPPFLAGS	=-D_SHR_TZNAME -D_SHR_TIMEZONE
 
 # -Wc,expo is used to export all functions
-SHAREDLIBCFLAGS	= -Wc,expo
-SHAREDLIBCXXFLAGS	= -Wc,expo
+SHAREDLIBCFLAGS	=-Wc,expo
+SHAREDLIBCXXFLAGS	=-Wc,expo
 
 # TODO: Consider using  -Wc,roc,ros for making the data and strings readonly
 #       -Wc,"ros" seems to work, but not the "roc"
