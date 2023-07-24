@@ -92,6 +92,7 @@ ifeq (${OS390BATCH},1)
 DEFS+=-DOS390BATCH
 endif
 
+LIBS+="//'CEE.SCEELIB(CELHS003)'" "//'CEE.SCEELIB(CELHSCPP)'" "//'CEE.SCEELIB(CELHS001)'" "//'CEE.SCEELIB(C128)'"
 BATCH_LIBS+="//'CEE.SCEELIB(CELHS003)'" "//'CEE.SCEELIB(CELHSCPP)'" "//'CEE.SCEELIB(CELHS001)'" "//'CEE.SCEELIB(C128)'"
 
 ## Commands to generate dependency files
@@ -107,9 +108,9 @@ LINK.cc=	$(COMPILE_LINK_ENVVAR) $(CXX) $(CXXFLAGS) -Wl,dll $(LDFLAGS)
 
 ## Commands for shared library (dll)
 SHLIB.c=	$(COMPILE_LINK_ENVVAR) ld -S "//'CEE.SCEEBND2'" -S "//'CBC.SCCNOBJ'" -S "//'SYS1.CSSLIB'" -b AMODE=31 -b DYNAM=DLL -b REUS=RENT -b EDIT=YES -b CALL=YES \
-	-b CASE=MIXED -v
+	-b CASE=MIXED -v -x $(FINAL_IMPORT_LIB)
 SHLIB.cc=	$(COMPILE_LINK_ENVVAR) ld -S "//'CEE.SCEEBND2'" -S "//'CBC.SCCNOBJ'" -S "//'SYS1.CSSLIB'" -b AMODE=31 -b DYNAM=DLL -b REUS=RENT -b EDIT=YES -b CALL=YES \
-	-b CASE=MIXED -v
+	-b CASE=MIXED -v -x $(FINAL_IMPORT_LIB)
 
 ## Compiler switch to embed a runtime search path
 LD_RPATH=	-I
