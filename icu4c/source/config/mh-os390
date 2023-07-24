@@ -67,10 +67,9 @@ SHAREDLIBCXXFLAGS	=-Wc,expo
 #       for details. This is the default for C++, but not C.
 # The DLL option must be used by the callee and caller code when using shared libraries.
 # NOCSECT might be used as an optimization option.
-# -+ means accept any file extension as a C++ file. By default only .C is accepted.
-CFLAGS          += -Wc,DLL,ROS,RENT,ILP32,NOANSIALIAS,'LANGLVL(EXTENDED)' $(ICU_IEEE)
-CXXFLAGS        += -Wc,DLL,ROS,RTTI,ILP32,NOANSIALIAS,'LANGLVL(EXTENDED0X)' $(ICU_IEEE) -+
-ARFLAGS         = -cr
+CFLAGS+=-Wc,DLL,ROS,RENT,ILP32,NOANSIALIAS,'LANGLVL(EXTENDED)' $(ICU_IEEE)
+CXXFLAGS+=-Wc,DLL,ROS,RTTI,ILP32,NOANSIALIAS,'LANGLVL(EXTENDED0X)' $(ICU_IEEE)
+ARFLAGS= -cr
 
 # _MSE_PROTOS usually interacts with _XOPEN_SOURCE. It affects some standard
 # C functions that use wchar_t, and it selects behavior for
@@ -93,7 +92,7 @@ ifeq (${OS390BATCH},1)
 DEFS+=-DOS390BATCH
 endif
 
-SYSLIBS="//'CEE.SCEELIB(CELHS003)'" "//'CEE.SCEELIB(CELHSCPP)'" "//'CEE.SCEELIB(CELHS001)'" "//'CEE.SCEELIB(C128)'"
+BATCH_LIBS+="//'CEE.SCEELIB(CELHS003)'" "//'CEE.SCEELIB(CELHSCPP)'" "//'CEE.SCEELIB(CELHS001)'" "//'CEE.SCEELIB(C128)'"
 
 ## Commands to generate dependency files
 GEN_DEPS.c=	makedep                        
@@ -108,9 +107,9 @@ LINK.cc=	$(COMPILE_LINK_ENVVAR) $(CXX) $(CXXFLAGS) -Wl,dll $(LDFLAGS)
 
 ## Commands for shared library (dll)
 SHLIB.c=	$(COMPILE_LINK_ENVVAR) ld -S "//'CEE.SCEEBND2'" -S "//'CBC.SCCNOBJ'" -S "//'SYS1.CSSLIB'" -b AMODE=31 -b DYNAM=DLL -b REUS=RENT -b EDIT=YES -b CALL=YES \
-	-b CASE=MIXED -v $(SYSLIBS)
+	-b CASE=MIXED -v
 SHLIB.cc=	$(COMPILE_LINK_ENVVAR) ld -S "//'CEE.SCEEBND2'" -S "//'CBC.SCCNOBJ'" -S "//'SYS1.CSSLIB'" -b AMODE=31 -b DYNAM=DLL -b REUS=RENT -b EDIT=YES -b CALL=YES \
-	-b CASE=MIXED -v $(SYSLIBS)
+	-b CASE=MIXED -v
 
 ## Compiler switch to embed a runtime search path
 LD_RPATH=	-I
