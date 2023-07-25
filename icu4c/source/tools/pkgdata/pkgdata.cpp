@@ -1369,7 +1369,7 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
         }
     } else /* if (IN_DLL_MODE(mode)) */ {
         if (cmd == NULL) {
-            length = uprv_strlen(pkgDataFlags[GENLIB]) + uprv_strlen(pkgDataFlags[LDICUDTFLAGS]) +
+            length = uprv_strlen(pkgDataFlags[GENLIB]) + uprv_strlen(pkgDataFlags[LDICUDTFLAGS]) + 128 + uprv_strlen(libFileNames[LIB_FILE]) +
                      ((uprv_strlen(targetDir) + uprv_strlen(libFileNames[LIB_FILE_VERSION_TMP])) * 2) +
                      uprv_strlen(objectFile) + uprv_strlen(pkgDataFlags[LD_SONAME]) +
                      uprv_strlen(pkgDataFlags[LD_SONAME][0] == 0 ? "" : libFileNames[LIB_FILE_VERSION_MAJOR]) +
@@ -1411,9 +1411,10 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
                 targetDir,
                 libFileNames[LIB_FILE_VERSION_TMP],
 #else
-        sprintf(cmd, "%s %s -o %s%s %s %s%s %s %s",
+        sprintf(cmd, "%s %s -x %s -o %s%s %s %s%s %s %s",
                 pkgDataFlags[GENLIB],
                 pkgDataFlags[LDICUDTFLAGS],
+                libFileNames[LIB_FILE],
                 targetDir,
                 libFileNames[LIB_FILE_VERSION_TMP],
 #endif
