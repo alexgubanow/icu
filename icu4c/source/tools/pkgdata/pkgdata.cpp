@@ -1411,7 +1411,7 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
                 targetDir,
                 libFileNames[LIB_FILE_VERSION_TMP],
 #else
-        sprintf(cmd, "%s %s -x %s58.3.x -o %s%s %s %s%s %s %s",
+        sprintf(cmd, "%s %s -x %s -o %s%s %s %s%s %s %s",
                 pkgDataFlags[GENLIB],
                 pkgDataFlags[LDICUDTFLAGS],
                 libFileNames[LIB_FILE_OS390BATCH_VERSION],                
