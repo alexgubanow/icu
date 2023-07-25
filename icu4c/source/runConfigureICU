@@ -368,6 +368,7 @@ case $platform in
         RELEASE_CXXFLAGS="-O2 -Wc,xplink,ILP32,GOFF,LONGNAME,NOTEMPINC -std=gnu++11"
         echo "you shall run export LOADEXP=$USER.ICU.EXP"
         echo "you shall run export LOADMOD=$USER.ICU.LOAD"
+        echo "you shall run export PDS_NAME_PREFIX=ICU"
         echo "you shall run export OS390BATCH=1"
         echo "you shall run export OS390_XPLINK=1"
         ;;
