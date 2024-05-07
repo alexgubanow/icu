@@ -114,7 +114,6 @@ endif
 ifeq ($(OS390BATCH),1)
 ## PDS_NAME_PREFIX sets the prefix of the PDS dataset name while keeping the ICU version number.
 ## To use custom names set ICU_PDS_NAME and ICU_PDS_NAME_SUFFIX
-## IXM is used as a name prefix for XML Toolkit, default value
 ifeq ($(PDS_NAME_PREFIX),)
 PDS_NAME_PREFIX=LICU
 endif
