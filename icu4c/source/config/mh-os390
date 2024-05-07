@@ -60,12 +60,11 @@ endif
 ## Flags for position independent code
 SHAREDLIBCFLAGS += -fPIC
 SHAREDLIBCXXFLAGS += -fPIC
-SHAREDLIBCPPFLAGS += -DPIC
 # For a dynamically called DLL module to share access to the POSIX external
 # variables, with its caller, the DLL module must define these _SHR_* macros.
 SHAREDLIBCPPFLAGS +=-D_SHR_TZNAME -D_SHR_TIMEZONE
-CFLAGS +=-std=c11 $(OS390_XPLINK) $(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)_$(SO_TARGET_VERSION)"
-CXXFLAGS +=-std=c++17 $(OS390_XPLINK) $(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)_$(SO_TARGET_VERSION)"
+CFLAGS +=$(OS390_XPLINK) $(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
+CXXFLAGS +=$(OS390_XPLINK) $(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
 ARFLAGS =-cr
 LIBCFLAGS +=-fvisibility=hidden
 LIBCXXFLAGS +=-fvisibility=hidden
