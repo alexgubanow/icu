@@ -11,11 +11,6 @@
 # Before you try to run the Makefile, make sure you have the      #
 # environment variables set.                                      #
 #                                                                 #
-# If you are going to do the OS390BATCH build, make sure you have #
-# the OS390BATCH environment variable set.                        #
-#                                                                 #
-#   export OS390BATCH=1                                           #
-#                                                                 #
 # To build a version of ICU that does not use IEEE Floating point #
 #                                                                 #
 #   export ICU_NOT_IEEE390=1                                      #
@@ -95,7 +90,6 @@ STUB_SUFFIX=_stub#M#
 DEFS+=-DOS390_STUBDATA -DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"#M#
 endif
 
-ifeq ($(OS390BATCH),1)
 ## PDS_NAME_PREFIX sets the prefix of the PDS dataset name while keeping the ICU version number.
 ## To use custom names set ICU_PDS_NAME and ICU_PDS_NAME_SUFFIX
 ifeq ($(PDS_NAME_PREFIX),)
@@ -119,12 +113,11 @@ BATCH_IO_TARGET=$(LIBDIR)/${PDS_FULL_NAME}IO${ICU_PDS_NAME_SUFFIX}
 BATCH_LAYOUT_TARGET=$(LIBDIR)/${PDS_FULL_NAME}LE${ICU_PDS_NAME_SUFFIX}
 BATCH_LAYOUTEX_TARGET=$(LIBDIR)/${PDS_FULL_NAME}LX${ICU_PDS_NAME_SUFFIX}
 
-BATCH_LIBICUDT=$(LIBDIR)/${BATCH_STUB_TARGET}.x
+BATCH_LIBICUDT=$(top_builddir)/stubdata/${BATCH_STUB_TARGET}.x
 BATCH_LIBICUUC=$(LIBDIR)/${BATCH_COMMON_TARGET}.x
 BATCH_LIBICUI18N=$(LIBDIR)/${BATCH_I18N_TARGET}.x
 BATCH_LIBICULE=$(LIBDIR)/${BATCH_LAYOUT_TARGET}.x
 BATCH_LIBICULX=$(LIBDIR)/${BATCH_LAYOUTEX_TARGET}.x
-endif
 
 ## Link commands to link to ICU libs
 LIBICUDT=$(top_builddir)/stubdata/$(LIBICU)data$(ICULIBSUFFIX)$(STUB_SUFFIX)$(SO_TARGET_VERSION).x
