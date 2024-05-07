@@ -480,7 +480,7 @@ typedef HANDLE MemoryMap;
             /* BUT FOR BATCH MODE IT IS AN EXCEPTION BECAUSE */
             /* THE FIRST THREE LETTERS ARE PREASSIGNED TO THE */
             /* PROJECT!!!!! */
-            uprv_strcpy(pathBuffer, "IXMI" U_ICU_VERSION_SHORT "DA");
+            uprv_strcpy(pathBuffer, "LICU" U_ICU_VERSION_SHORT "DA");
 #       else
             /* set up the library name */
             uprv_strcpy(basename, LIB_PREFIX U_LIBICUDATA_NAME U_ICU_VERSION_SHORT LIB_SUFFIX);

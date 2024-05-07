@@ -1473,33 +1473,33 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
         PDS_Name[0] = 0;
         PDS_LibName[0] = 0;
         if (specialHandling && uprv_strcmp(libFileNames[LIB_FILE],"libicudata") == 0) {
-            if (env_tmp = getenv("ICU_PDS_NAME")) {
+            if ((env_tmp = getenv("ICU_PDS_NAME"))) {
                 sprintf(PDS_Name, "%s%s",
                         env_tmp,
                         "DA");
                 strcat(PDS_Name, getenv("ICU_PDS_NAME_SUFFIX"));
-            } else if (env_tmp = getenv("PDS_NAME_PREFIX")) {
+            } else if ((env_tmp = getenv("PDS_NAME_PREFIX"))) {
                 sprintf(PDS_Name, "%s%s",
                         env_tmp,
                         U_ICU_VERSION_SHORT "DA");
             } else {
                 sprintf(PDS_Name, "%s%s",
-                        "IXMI",
+                        "LICU",
                         U_ICU_VERSION_SHORT "DA");
             }
         } else if (!specialHandling && uprv_strcmp(libFileNames[LIB_FILE],"libicudata_stub") == 0) {
-            if (env_tmp = getenv("ICU_PDS_NAME")) {
+            if ((env_tmp = getenv("ICU_PDS_NAME"))) {
                 sprintf(PDS_Name, "%s%s",
                         env_tmp,
                         "D1");
                 strcat(PDS_Name, getenv("ICU_PDS_NAME_SUFFIX"));
-            } else if (env_tmp = getenv("PDS_NAME_PREFIX")) {
+            } else if ((env_tmp = getenv("PDS_NAME_PREFIX"))) {
                 sprintf(PDS_Name, "%s%s",
                         env_tmp,
                         U_ICU_VERSION_SHORT "D1");
             } else {
                 sprintf(PDS_Name, "%s%s",
-                        "IXMI",
+                        "LICU",
                         U_ICU_VERSION_SHORT "D1");
             }
         }
@@ -1507,7 +1507,7 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
         if (PDS_Name[0]) {
             sprintf(PDS_LibName,"%s%s%s%s%s",
                     "\"//'",
-                    getenv("LOADMOD"),
+                    getenv("ICU_BUILD_HLQ"),
                     "(",
                     PDS_Name,
                     ")'\"");
