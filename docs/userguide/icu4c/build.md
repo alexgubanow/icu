@@ -389,7 +389,7 @@ By default, ICU builds its libraries into the UNIX file system (HFS). In additio
 
 The OS390BATCH environment variable enables non-UNIX support including the batch environment. When OS390BATCH is set, the libicui18n_XX_.dll, libicuuc_XX_.dll, and libicudt_XX_e.dll binaries are built into data sets (the native file system). Turning on OS390BATCH does not turn off the normal z/OS UNIX build. This means that the z/OS UNIX (HFS) DLLs will always be created.
 
-Two additional environment variables indicate the names of the z/OS data sets to use. The LOADMOD environment variable identifies the name of the data set that contains the dynamic link libraries (DLLs) and the LOADEXP environment variable identifies the name of the data set that contains the side decks, which are normally the files with the .x suffix in the UNIX file system.
+Two additional environment variables indicate the names of the z/OS data sets to use. The ICU_BUILD_HLQ environment variable identifies the name of the data set that contains the dynamic link libraries (DLLs).
 
 A data set is roughly equivalent to a UNIX or Windows file. For most kinds of data sets the operating system maintains record boundaries. UNIX and Windows files are byte streams. Two kinds of data sets are PDS and PDSE. Each data set of these two types contains a directory. It is like a UNIX directory. Each "file" is called a "member". Each member name is limited to eight bytes, normally EBCDIC.
 
@@ -397,8 +397,7 @@ Here is an example of some environment variables that you can set prior to build
 
 ```
 OS390BATCH=1
-LOADMOD=_USER_.ICU.LOAD
-LOADEXP=_USER_.ICU.EXP
+ICU_BUILD_HLQ=_USER_.ICU.LOAD
 ```
 
 The PDS member names for the DLL file names are as follows:
@@ -409,7 +408,7 @@ IXMI_XX_UC --> libicuuc_XX_.dll
 IXMI_XX_DA --> libicudt_XX_e.dll
 ```
 
-You should point the LOADMOD environment variable at a partitioned data set extended (PDSE) and point the LOADEXP environment variable at a partitioned data set (PDS). The PDSE can be allocated with the following attributes:
+You should point the ICU_BUILD_HLQ environment variable at a partitioned data set extended (PDSE), can be allocated with the following attributes:
 
 ```
 Data Set Name . . . : USER.ICU.LOAD
