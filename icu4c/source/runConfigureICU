@@ -388,7 +388,6 @@ case $platform in
         DEBUG_CFLAGS='-g -O0 -m32'
         DEBUG_CXXFLAGS='-g -O0 -m32'
         DEBUG_LDFLAGS='-m32'
-        export OS390BATCH=1
         ;;
     zOSm64)
         THE_OS="z/OS (OS/390) 64bit"
@@ -407,7 +406,6 @@ case $platform in
         DEBUG_CFLAGS='-g -O0 -m64'
         DEBUG_CXXFLAGS='-g -O0 -m64'
         DEBUG_LDFLAGS='-m64'
-        export OS390BATCH=1
         ;;
     *)
         >&2 echo "$me: unrecognized platform \"$platform\" (use --help for help)"
