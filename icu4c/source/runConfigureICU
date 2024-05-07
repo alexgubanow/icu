@@ -371,8 +371,8 @@ case $platform in
         CC=qcc; export CC
         CXX=QCC; export CXX
         ;;
-    zOS)
-        THE_OS="z/OS (OS/390)"
+    zOSm32)
+        THE_OS="z/OS (OS/390) 31bit"
         THE_COMP="IBM OpenXL"
         CC=`which ibm-clang`; export CC
         if [ ! -x $CC ]; then
@@ -382,10 +382,30 @@ case $platform in
         if [ ! -x $CXX ]; then
            echo "ERROR: ibm-clang++ was not found, please check the PATH to make sure it is correct."; exit 1
         fi
-        RELEASE_CFLAGS='-O2'
-        RELEASE_CXXFLAGS='-O2'
-        DEBUG_CFLAGS='-g -O0'
-        DEBUG_CXXFLAGS='-g -O0'
+        RELEASE_CFLAGS='-O2 -m32'
+        RELEASE_CXXFLAGS='-O2 -m32'
+        RELEASE_LDFLAGS='-m32'
+        DEBUG_CFLAGS='-g -O0 -m32'
+        DEBUG_CXXFLAGS='-g -O0 -m32'
+        DEBUG_LDFLAGS='-m32'
+        ;;
+    zOSm64)
+        THE_OS="z/OS (OS/390) 64bit"
+        THE_COMP="IBM OpenXL"
+        CC=`which ibm-clang`; export CC
+        if [ ! -x $CC ]; then
+           echo "ERROR: ibm-clang was not found, please check the PATH to make sure it is correct."; exit 1
+        fi
+        CXX=`which ibm-clang++`; export CXX
+        if [ ! -x $CXX ]; then
+           echo "ERROR: ibm-clang++ was not found, please check the PATH to make sure it is correct."; exit 1
+        fi
+        RELEASE_CFLAGS='-O2 -m64'
+        RELEASE_CXXFLAGS='-O2 -m64'
+        RELEASE_LDFLAGS='-m64'
+        DEBUG_CFLAGS='-g -O0 -m64'
+        DEBUG_CXXFLAGS='-g -O0 -m64'
+        DEBUG_LDFLAGS='-m64'
         ;;
     *)
         >&2 echo "$me: unrecognized platform \"$platform\" (use --help for help)"

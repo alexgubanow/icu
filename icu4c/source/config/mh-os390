@@ -29,23 +29,12 @@
 # This option will be removed in a future version of ICU.         #
 #                                                                 #
 #   export OS390_STUBDATA=1                                       #
-#                                                                 #
-# To build a version of ICU which exploits the C/C++ compiler     #
-# and runtime Extra Performance Linkage (XPLINK), specify         #
-#                                                                 #
-#   export OS390_XPLINK=-m32                                      #
-#   or for 64b                                                    #
-#   export OS390_XPLINK=-m64                                      #
-#                                                                 #
 ###################################################################
 
 ifeq (${ICU_NOT_IEEE390}, 1)
 ICU_IEEE=#M#
 else
 ICU_IEEE=-mzos-float-kind=ieee -DIEEE_754=0#M#
-endif
-ifeq (${OS390_XPLINK},)
-OS390_XPLINK=-m32
 endif
 ifeq (${TARGET_ICU_ARCH},)
 TARGET_ICU_ARCH=arch10
@@ -63,13 +52,11 @@ SHAREDLIBCXXFLAGS += -fPIC
 # For a dynamically called DLL module to share access to the POSIX external
 # variables, with its caller, the DLL module must define these _SHR_* macros.
 SHAREDLIBCPPFLAGS +=-D_SHR_TZNAME -D_SHR_TIMEZONE
-CFLAGS +=$(OS390_XPLINK) $(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
-CXXFLAGS +=$(OS390_XPLINK) $(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
+CFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
+CXXFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
 ARFLAGS =-cr
 LIBCFLAGS +=-fvisibility=hidden
 LIBCXXFLAGS +=-fvisibility=hidden
-LDFLAGS+=$(OS390_XPLINK)
-
 ## Commands to generate dependency files
 GEN_DEPS.c=makedep                        
 GEN_DEPS.cc=makedep

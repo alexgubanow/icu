@@ -374,14 +374,7 @@ You can install ICU on z/OS or OS/390 (the previous name of z/OS), but IBM tests
 *   Since USS does not support using the mmap() function over NFS, it is recommended that you build ICU on a local filesystem. Once ICU has been built, you should not have this problem while using ICU when the data library has been built as a shared library, which is this is the default setting.
 *   Encoding considerations: The source code assumes that it is compiled with codepage ibm-1047 (to be exact, the UNIX System Services variant of it). The pax command converts all of the source code files from ASCII to codepage ibm-1047 (USS) EBCDIC. However, some files are binary files and must not be converted, or must be converted back to their original state. You can use the [unpax-icu.sh](https://github.com/unicode-org/icu/blob/main/icu4c/as_is/os390/unpax-icu.sh) script to do this for you automatically. It will unpackage the tar file and convert all the necessary files for you automatically.
 *   z/OS supports both native S/390 hexadecimal floating point and (with OS/390 2.6 and later) IEEE 754 binary floating point. This is a compile time option. Applications built with IEEE should use ICU DLLs that are built with IEEE (and vice versa). The environment variable IEEE390=0 will cause the z/OS version of ICU to be built without IEEE floating point support and use the native hexadecimal floating point. By default ICU is built with IEEE 754 support. Native floating point support is sufficient for codepage conversion, resource bundle and UnicodeString operations, but the Format APIs require IEEE binary floating point.
-*   z/OS introduced the concept of Extra Performance Linkage (XPLINK) to bring performance improvement opportunities to call-intensive C and C++ applications such as ICU. XPLINK is enabled on a DLL-by-DLL basis, so if you are considering using XPLINK in your application that uses ICU, you should consider building the XPLINK-enabled version of ICU. You need to set ICU's environment variable `OS390_XPLINK=1` prior to invoking the make process to produce binaries that are enabled for XPLINK. The XPLINK option, which is available for z/OS 1.2 and later, requires the PTF PQ69418 to build XPLINK enabled binaries.
-*   ICU requires XPLINK for the icuio library. If you want to use the rest of ICU without XPLINK, then you must use the --disable-icuio configure option.
-*   The latest versions of z/OS use [XPLINK version (C128) of the C++ standard library](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.2.0/com.ibm.zos.v2r2.cbcux01/oebind6.htm) by default. You may see [an error](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.2.0/com.ibm.zos.v2r2.cbcux01/oebind5.htm) when running with XPLINK disabled. To avoid this error, set the following environment variable or similar:
-
-```
-export _CXX_PSYSIX="CEE.SCEELIB(C128N)":"CBC.SCLBSID(IOSTREAM,COMPLEX)"
-```
-
+*   Tell about OpenXL somewhere here
 *   When building ICU data, the heap size may need to be increased with the following environment variable:
 
 ```
