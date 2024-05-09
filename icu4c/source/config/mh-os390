@@ -29,27 +29,14 @@ OS390BATCH=1
 DEFS+=-DOS390BATCH
 endif
 
-## PDS_NAME_PREFIX sets the prefix of the PDS dataset name while keeping the ICU version number.
-## To use custom names set ICU_PDS_NAME and ICU_PDS_NAME_SUFFIX
-ifeq ($(PDS_NAME_PREFIX),)
-PDS_NAME_PREFIX=LICU
-endif
-ifeq ($(ICU_PDS_NAME),)
-PDS_FULL_NAME=${PDS_NAME_PREFIX}${SO_TARGET_VERSION_MAJOR}
-else
-PDS_FULL_NAME=${ICU_PDS_NAME}
-endif
-BATCH_STUB_TARGET=${PDS_FULL_NAME}DA${ICU_PDS_NAME_SUFFIX}
-PKGDATA_DEFS+=-DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"
-
 ## Flags for position independent code
 SHAREDLIBCFLAGS += -fPIC
 SHAREDLIBCXXFLAGS += -fPIC
 # For a dynamically called DLL module to share access to the POSIX external
 # variables, with its caller, the DLL module must define these _SHR_* macros.
 SHAREDLIBCPPFLAGS +=-D_SHR_TZNAME -D_SHR_TIMEZONE
-CFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)" -DBATCH_STUB_TARGET=\"$(BATCH_STUB_TARGET)\"
-CXXFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)" -DBATCH_STUB_TARGET=\"$(BATCH_STUB_TARGET)\"
+CFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
+CXXFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
 ARFLAGS =-cr
 LIBCFLAGS +=-fvisibility=hidden
 LIBCXXFLAGS +=-fvisibility=hidden
@@ -85,6 +72,18 @@ FINAL_IMPORT_LIB=$(basename $(notdir $(FINAL_SO_TARGET))).x
 ## Non-shared intermediate object suffix
 STATIC_O = o
 
+## PDS_NAME_PREFIX sets the prefix of the PDS dataset name while keeping the ICU version number.
+## To use custom names set ICU_PDS_NAME and ICU_PDS_NAME_SUFFIX
+ifeq ($(PDS_NAME_PREFIX),)
+PDS_NAME_PREFIX=LICU
+endif
+ifeq ($(ICU_PDS_NAME),)
+PDS_FULL_NAME=${PDS_NAME_PREFIX}${SO_TARGET_VERSION_MAJOR}
+else
+PDS_FULL_NAME=${ICU_PDS_NAME}
+endif
+BATCH_STUB_TARGET=${PDS_FULL_NAME}DA${ICU_PDS_NAME_SUFFIX}
+PKGDATA_DEFS+=-DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\" -DBATCH_STUB_TARGET=\"$(BATCH_STUB_TARGET)\"
 BATCH_COMMON_TARGET=$(LIBDIR)/${PDS_FULL_NAME}UC${ICU_PDS_NAME_SUFFIX}
 BATCH_I18N_TARGET=$(LIBDIR)/${PDS_FULL_NAME}IN${ICU_PDS_NAME_SUFFIX}
 BATCH_IO_TARGET=$(LIBDIR)/${PDS_FULL_NAME}IO${ICU_PDS_NAME_SUFFIX}
