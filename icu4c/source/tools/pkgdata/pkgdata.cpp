@@ -1483,11 +1483,9 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
 
 #if U_PLATFORM == U_PF_OS390
         char *env_tmp;
-        char PDS_LibName[512];
         char PDS_Name[512];
 
         PDS_Name[0] = 0;
-        PDS_LibName[0] = 0;
         if (specialHandling && uprv_strcmp(libFileNames[LIB_FILE],"libicudata") == 0) {
             if ((env_tmp = getenv("ICU_PDS_NAME"))) {
                 sprintf(PDS_Name, "%s%s",
@@ -1521,16 +1519,10 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
         }
 
         if (PDS_Name[0]) {
-            sprintf(PDS_LibName,"%s%s%s%s%s",
-                    "\"//'",
-                    getenv("ICU_BUILD_HLQ"),
-                    "(",
-                    PDS_Name,
-                    ")'\"");
             sprintf(cmd, "%s %s -o %s %s %s%s %s %s",
                    pkgDataFlags[GENLIB],
                    pkgDataFlags[LDICUDTFLAGS],
-                   PDS_LibName,
+                   PDS_Name,
                    objectFile,
                    pkgDataFlags[LD_SONAME],
                    pkgDataFlags[LD_SONAME][0] == 0 ? "" : libFileNames[LIB_FILE_VERSION_MAJOR],
