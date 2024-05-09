@@ -19,7 +19,7 @@
 ifeq (${ICU_NOT_IEEE390}, 1)
 ICU_IEEE=#M#
 else
-ICU_IEEE=-mzos-float-kind=ieee -DIEEE_754=0#M#
+ICU_IEEE=-mzos-float-kind=ieee -DIEEE_754=1
 endif
 ifeq (${TARGET_ICU_ARCH},)
 TARGET_ICU_ARCH=arch10
