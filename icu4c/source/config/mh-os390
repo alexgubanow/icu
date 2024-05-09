@@ -48,8 +48,8 @@ SHAREDLIBCXXFLAGS += -fPIC
 # For a dynamically called DLL module to share access to the POSIX external
 # variables, with its caller, the DLL module must define these _SHR_* macros.
 SHAREDLIBCPPFLAGS +=-D_SHR_TZNAME -D_SHR_TIMEZONE
-CFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)" -DBATCH_STUB_TARGET=$(BATCH_STUB_TARGET)
-CXXFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)" -DBATCH_STUB_TARGET=$(BATCH_STUB_TARGET)
+CFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)" -DBATCH_STUB_TARGET=\"$(BATCH_STUB_TARGET)\"
+CXXFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)" -DBATCH_STUB_TARGET=\"$(BATCH_STUB_TARGET)\"
 ARFLAGS =-cr
 LIBCFLAGS +=-fvisibility=hidden
 LIBCXXFLAGS +=-fvisibility=hidden
