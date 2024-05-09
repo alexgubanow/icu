@@ -15,7 +15,7 @@
 #                                                                 #
 #   export ICU_NOT_IEEE390=1                                      #
 ###################################################################
-
+PLATFORM=OS390
 ifeq (${ICU_NOT_IEEE390}, 1)
 ICU_IEEE=#M#
 else

@@ -44,7 +44,7 @@ ifeq ($(ENABLE_SO_VERSION_DATA),1)
 SO_VERSION_DATA = common.res
 endif
 
-ifeq ($(PLATFORM),OS390)
+ifeq ($(BUILD_HOST_ICU),OS390)
 BATCH_TARGET = $(BATCH_COMMON_TARGET)
 BATCH_LIBS = $(BATCH_LIBICUDT) -lm
 endif
@@ -187,7 +187,7 @@ ifneq ($(wildcard $(libdir)/$(MIDDLE_SO_TARGET)),)
 endif
 endif
 
-ifeq ($(PLATFORM),OS390)
+ifeq ($(BUILD_HOST_ICU),OS390)
 $(BATCH_TARGET):$(OBJECTS)
 	$(SHLIB.cc) $(LD_SONAME) -Wl,-x$@.x $(OUTOPT)$@ $^ $(BATCH_LIBS)
 endif
