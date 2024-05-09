@@ -93,7 +93,6 @@ icu4c/source/mkinstalldirs zos-working-tree-encoding=IBM-1047
 sources.txt zos-working-tree-encoding=IBM-1047
 *.sub zos-working-tree-encoding=IBM-1047
 icu4c/source/data/mappings/convrtrs.txt zos-working-tree-encoding=IBM-1047
-icu4c/source/data/misc/*.txt text !eol zos-working-tree-encoding=IBM-1047
 icu4c/source/data/sprep/*.txt text !eol zos-working-tree-encoding=IBM-1047
 icu4c/source/data/unidata/NormalizationCorrections.txt text !eol zos-working-tree-encoding=IBM-1047
 icu4c/source/data/zone/tzdbNames.txt text !eol zos-working-tree-encoding=IBM-1047
@@ -102,6 +101,7 @@ icu4c/source/test/testdata/filters/*.txt text !eol zos-working-tree-encoding=IBM
 icu4c/source/test/testdata/*.ucm text !eol zos-working-tree-encoding=IBM-1047
 
 #simpler to say who should stay UTF-8 from test data
+icu4c/source/data/misc/*.txt text !eol zos-working-tree-encoding=UTF-8
 icu4c/source/test/cintltst/usrchdat.inc text !eol zos-working-tree-encoding=UTF-8
 icu4c/source/test/testdata/Burmese_graphclust_model5_heavy.txt text !eol zos-working-tree-encoding=UTF-8
 icu4c/source/test/testdata/Burmese_graphclust_model5_heavy_Test.txt text !eol zos-working-tree-encoding=UTF-8
