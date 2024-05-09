@@ -373,42 +373,33 @@ You can install ICU on z/OS or OS/390 (the previous name of z/OS), but IBM tests
 *   The makedep and GNU make tools are required for building ICU. If it is not already installed on your system, it is available at the [z/OS UNIX - Tools and Toys](http://www-03.ibm.com/servers/eserver/zseries/zos/unix/bpxa1toy.html) site. The PATH environment variable should be updated to contain the location of this executable prior to build. Failure to add these tools to your PATH will cause ICU build failures or cause pkgdata to fail to run.
 *   Since USS does not support using the mmap() function over NFS, it is recommended that you build ICU on a local filesystem. Once ICU has been built, you should not have this problem while using ICU when the data library has been built as a shared library, which is this is the default setting.
 *   Encoding considerations: The source code assumes that it is compiled with codepage ibm-1047 (to be exact, the UNIX System Services variant of it). The pax command converts all of the source code files from ASCII to codepage ibm-1047 (USS) EBCDIC. However, some files are binary files and must not be converted, or must be converted back to their original state. You can use the [unpax-icu.sh](https://github.com/unicode-org/icu/blob/main/icu4c/as_is/os390/unpax-icu.sh) script to do this for you automatically. It will unpackage the tar file and convert all the necessary files for you automatically.
-*   z/OS supports both native S/390 hexadecimal floating point and (with OS/390 2.6 and later) IEEE 754 binary floating point. This is a compile time option. Applications built with IEEE should use ICU DLLs that are built with IEEE (and vice versa). The environment variable IEEE390=0 will cause the z/OS version of ICU to be built without IEEE floating point support and use the native hexadecimal floating point. By default ICU is built with IEEE 754 support. Native floating point support is sufficient for codepage conversion, resource bundle and UnicodeString operations, but the Format APIs require IEEE binary floating point.
-*   Tell about OpenXL somewhere here
-*   When building ICU data, the heap size may need to be increased with the following environment variable:
+*   z/OS supports both native S/390 hexadecimal floating point and (with OS/390 2.6 and later) IEEE 754 binary floating point. This is a compile time option. Applications built with IEEE should use ICU DLLs that are built with IEEE (and vice versa). The environment variable ICU_IS_NOT_IEEE754=1 will cause the z/OS version of ICU to be built without IEEE floating point support and use the native hexadecimal floating point. By default ICU is built with IEEE 754 support. Native floating point support is sufficient for codepage conversion, resource bundle and UnicodeString operations, but the Format APIs require IEEE binary floating point.
+*   OpenXL 2.1 and newer shall be used for z/OS build ICU, while XLc and XLclang does not support C++17 and can't be used to build ICU since version 58.
+
+When building ICU data, one may need to set following environment variables:
 
 ```
-export _CEE_RUNOPTS="HEAPPOOLS(ON),HEAP(4M,1M,ANY,FREE,0K,4080)"
+export _ENCODE_FILE_NEW=IBM-1047
+export _ENCODE_FILE_EXISTING=IBM-1047
+export _CEE_RUNOPTS="FILETAG(AUTOCVT,AUTOTAG) POSIX(ON)"
+export _BPXK_AUTOCVT=ON
+export _TAG_REDIR_ERR=txt
+export _TAG_REDIR_IN=txt
+export _TAG_REDIR_OUT=txt
 ```
-
 *   The rest of the instructions for building and testing ICU on z/OS with UNIX System Services are the same as the [How To Build And Install On UNIX](#how-to-build-and-install-on-unix) section.
 
 ### z/OS (Batch/PDS) support outside the UNIX system services environment
 
-By default, ICU builds its libraries into the UNIX file system (HFS). In addition, there is a z/OS specific environment variable (OS390BATCH) to build some libraries into the z/OS native file system. This is useful, for example, when your application is externalized via Job Control Language (JCL).
+ICU on z/OS builds its libraries into the UNIX file system (HFS). In addition, some libraries are built with batch-ready names. The default batch-ready ICU name convetion is LICU as prefix, 2 characters for version of library and 2 characters for exact library name, like LICU76DA or LICU76IN. This is useful, for example, when your application is externalized via Job Control Language (JCL).
+Enviromental variables to control z/OS batch-ready build of ICU:
 
-The OS390BATCH environment variable enables non-UNIX support including the batch environment. When OS390BATCH is set, the libicui18n_XX_.dll, libicuuc_XX_.dll, and libicudt_XX_e.dll binaries are built into data sets (the native file system). Turning on OS390BATCH does not turn off the normal z/OS UNIX build. This means that the z/OS UNIX (HFS) DLLs will always be created.
+*   ICU_PDS_NAME sets the entire library name, only 2 characters for exact library name will be appended
+*   PDS_NAME_PREFIX sets the prefix, like LICU in LICU76DA examle
+*   ICU_PDS_NAME_SUFFIX sets suffix, empty by default
+*   ICU_PLUGINS_DD=1 will force ICU to load plugins from //DD:ICUPLUG, not set by default, means ICU will read plugins from an HFS directory
 
-Two additional environment variables indicate the names of the z/OS data sets to use. The ICU_BUILD_HLQ environment variable identifies the name of the data set that contains the dynamic link libraries (DLLs).
-
-A data set is roughly equivalent to a UNIX or Windows file. For most kinds of data sets the operating system maintains record boundaries. UNIX and Windows files are byte streams. Two kinds of data sets are PDS and PDSE. Each data set of these two types contains a directory. It is like a UNIX directory. Each "file" is called a "member". Each member name is limited to eight bytes, normally EBCDIC.
-
-Here is an example of some environment variables that you can set prior to building ICU:
-
-```
-OS390BATCH=1
-ICU_BUILD_HLQ=_USER_.ICU.LOAD
-```
-
-The PDS member names for the DLL file names are as follows:
-
-```
-IXMI_XX_IN --> libicui18n_XX_.dll
-IXMI_XX_UC --> libicuuc_XX_.dll
-IXMI_XX_DA --> libicudt_XX_e.dll
-```
-
-You should point the ICU_BUILD_HLQ environment variable at a partitioned data set extended (PDSE), can be allocated with the following attributes:
+After build completes, one can copy batch-ready libraries to PDSE dataset, which can be allocated with the following attributes:
 
 ```
 Data Set Name . . . : USER.ICU.LOAD
@@ -424,24 +415,6 @@ Block size  . . . . : 32760
 1st extent cylinders: 1
 Secondary cylinders : 5
 Data set name type  : LIBRARY
-```
-
-The PDS can be allocated with the following attributes:
-
-```
-Data Set Name . . . : USER.ICU.EXP
-Management class. . : **None**
-Storage class . . . : BASE
-Volume serial . . . : TSO007
-Device type . . . . : 3390
-Data class. . . . . : **None**
-Organization  . . . : PO
-Record format . . . : FB
-Record length . . . : 80
-Block size  . . . . : 3200
-1st extent cylinders: 3
-Secondary cylinders : 3
-Data set name type  : PDS
 ```
 
 ## How To Build And Install On The IBM i Family (IBM i, i5/OS OS/400)

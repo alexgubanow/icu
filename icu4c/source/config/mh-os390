@@ -13,20 +13,19 @@
 #                                                                 #
 # To build a version of ICU that does not use IEEE Floating point #
 #                                                                 #
-#   export ICU_NOT_IEEE390=1                                      #
+#   export ICU_IS_NOT_IEEE754=1                                   #
 ###################################################################
 BUILD_HOST_ICU=OS390
-ifeq (${ICU_NOT_IEEE390}, 1)
-ICU_IEEE=#M#
+ifeq (${ICU_IS_NOT_IEEE754}, 1)
+ICU_IEEE=-mzos-float-kind=hex -DIEEE_754=0
 else
 ICU_IEEE=-mzos-float-kind=ieee -DIEEE_754=1
 endif
 ifeq (${TARGET_ICU_ARCH},)
 TARGET_ICU_ARCH=arch10
 endif
-ifeq (${OS390BATCH},)
-OS390BATCH=1
-DEFS+=-DOS390BATCH
+ifeq (${ICU_PLUGINS_DD},1)
+DEFS+=-DICU_PLUGINS_DD
 endif
 
 ## Flags for position independent code
