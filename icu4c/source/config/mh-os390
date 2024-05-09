@@ -14,16 +14,6 @@
 # To build a version of ICU that does not use IEEE Floating point #
 #                                                                 #
 #   export ICU_NOT_IEEE390=1                                      #
-#                                                                 #
-# To build a version of ICU which uses a two data libraries       #
-# where the smaller one is loaded first, use OS390_STUBDATA.      #
-# USAGE OF THIS OPTION IS DEPRECATED. You should look into using  #
-# Link Pack Area (LPA), library lookaside facility (LLA) or other #
-# z/OS options that enable page fault based loading of read-only  #
-# code/data instead of this option.                               #
-# This option will be removed in a future version of ICU.         #
-#                                                                 #
-#   export OS390_STUBDATA=1                                       #
 ###################################################################
 
 ifeq (${ICU_NOT_IEEE390}, 1)
@@ -41,14 +31,28 @@ ifeq (${OS390BATCH},)
 OS390BATCH=1
 DEFS+=-DOS390BATCH
 endif
+
+## PDS_NAME_PREFIX sets the prefix of the PDS dataset name while keeping the ICU version number.
+## To use custom names set ICU_PDS_NAME and ICU_PDS_NAME_SUFFIX
+ifeq ($(PDS_NAME_PREFIX),)
+PDS_NAME_PREFIX=LICU
+endif
+ifeq ($(ICU_PDS_NAME),)
+PDS_FULL_NAME=${PDS_NAME_PREFIX}${SO_TARGET_VERSION_MAJOR}
+else
+PDS_FULL_NAME=${ICU_PDS_NAME}
+endif
+BATCH_STUB_TARGET=${PDS_FULL_NAME}DA${ICU_PDS_NAME_SUFFIX}
+PKGDATA_DEFS+=-DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"
+
 ## Flags for position independent code
 SHAREDLIBCFLAGS += -fPIC
 SHAREDLIBCXXFLAGS += -fPIC
 # For a dynamically called DLL module to share access to the POSIX external
 # variables, with its caller, the DLL module must define these _SHR_* macros.
 SHAREDLIBCPPFLAGS +=-D_SHR_TZNAME -D_SHR_TIMEZONE
-CFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
-CXXFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)"
+CFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)" -DBATCH_STUB_TARGET=\"$(BATCH_STUB_TARGET)\"
+CXXFLAGS +=$(ICU_IEEE) -march=$(TARGET_ICU_ARCH) -mzos-service="$(LIBICU)v$(SO_TARGET_VERSION)" -DBATCH_STUB_TARGET=\"$(BATCH_STUB_TARGET)\"
 ARFLAGS =-cr
 LIBCFLAGS +=-fvisibility=hidden
 LIBCXXFLAGS +=-fvisibility=hidden
@@ -83,29 +87,6 @@ FINAL_IMPORT_LIB=$(basename $(notdir $(FINAL_SO_TARGET))).x
 
 ## Non-shared intermediate object suffix
 STATIC_O = o
-
-ifeq ($(OS390_STUBDATA),1)
-## Suffix of the subset data library for dual common library support
-STUB_SUFFIX=_stub#M#
-DEFS+=-DOS390_STUBDATA -DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"#M#
-endif
-
-## PDS_NAME_PREFIX sets the prefix of the PDS dataset name while keeping the ICU version number.
-## To use custom names set ICU_PDS_NAME and ICU_PDS_NAME_SUFFIX
-ifeq ($(PDS_NAME_PREFIX),)
-PDS_NAME_PREFIX=LICU
-endif
-ifeq ($(ICU_PDS_NAME),)
-PDS_FULL_NAME=${PDS_NAME_PREFIX}${SO_TARGET_VERSION_MAJOR}
-else
-PDS_FULL_NAME=${ICU_PDS_NAME}
-endif
-ifeq ($(OS390_STUBDATA),1)
-BATCH_STUB_TARGET=${PDS_FULL_NAME}D1${ICU_PDS_NAME_SUFFIX}
-else
-BATCH_STUB_TARGET=${PDS_FULL_NAME}DA${ICU_PDS_NAME_SUFFIX}
-PKGDATA_DEFS+=-DU_LIBICUDATA_NAME=\"$(ICUPREFIX)$(DATA_STUBNAME)$(ICULIBSUFFIX)\"
-endif
 
 BATCH_COMMON_TARGET=$(LIBDIR)/${PDS_FULL_NAME}UC${ICU_PDS_NAME_SUFFIX}
 BATCH_I18N_TARGET=$(LIBDIR)/${PDS_FULL_NAME}IN${ICU_PDS_NAME_SUFFIX}
