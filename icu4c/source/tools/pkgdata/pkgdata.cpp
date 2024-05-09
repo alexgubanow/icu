@@ -1482,8 +1482,8 @@ static int32_t pkg_generateLibraryFile(const char *targetDir, const char mode, c
         result = runCommand(cmd);
 
 #if U_PLATFORM == U_PF_OS390
-        sprintf(cmd, "%s %s -o %s %s %s%s %s %s", pkgDataFlags[GENLIB], pkgDataFlags[LDICUDTFLAGS],
-                BATCH_STUB_TARGET, objectFile, pkgDataFlags[LD_SONAME],
+        sprintf(cmd, "%s %s -o %s%s %s %s%s %s %s", pkgDataFlags[GENLIB], pkgDataFlags[LDICUDTFLAGS],
+                targetDir, BATCH_STUB_TARGET, objectFile, pkgDataFlags[LD_SONAME],
                 pkgDataFlags[LD_SONAME][0] == 0 ? "" : libFileNames[LIB_FILE_VERSION_MAJOR],
                 pkgDataFlags[RPATH_FLAGS], pkgDataFlags[BIR_FLAGS]);
 
