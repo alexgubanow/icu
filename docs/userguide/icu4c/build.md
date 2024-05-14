@@ -373,7 +373,7 @@ You can install ICU on z/OS or OS/390 (the previous name of z/OS), but IBM tests
 *   The makedep and GNU make tools are required for building ICU. If it is not already installed on your system, it is available at the [z/OS UNIX - Tools and Toys](http://www-03.ibm.com/servers/eserver/zseries/zos/unix/bpxa1toy.html) site. The PATH environment variable should be updated to contain the location of this executable prior to build. Failure to add these tools to your PATH will cause ICU build failures or cause pkgdata to fail to run.
 *   Encoding considerations: The source code assumes that it is compiled with codepage ibm-1047 (to be exact, the z/OS UNIX variant of it). The pax command converts all of the source code files from ASCII to codepage ibm-1047 (z/OS UNIX) EBCDIC. However, some files are binary files and must not be converted, or must be converted back to their original state. You can use the [unpax-icu.sh](https://github.com/unicode-org/icu/blob/main/icu4c/as_is/os390/unpax-icu.sh) script to do this for you automatically. It will unpackage the tar file and convert all the necessary files for you automatically.
 *   z/OS supports both native S/390 hexadecimal floating point and (with OS/390 2.6 and later) IEEE 754 binary floating point. This is a compile time option. Applications built with IEEE should use ICU DLLs that are built with IEEE (and vice versa). The environment variable ICU_IS_NOT_IEEE754=1 will disable IEEE floating point support on z/OS and use the native hexadecimal floating point. By default, ICU is built with IEEE 754 support. Native hexadecimal floating point support is sufficient for codepage conversion, resource bundle and UnicodeString operations, but the Format APIs require IEEE binary floating point.
-*   OpenXL 2.1 or newer compiler shall be used for z/OS build ICU, while XLc and XLclang compilers does not support C++17 and can't be used to build ICU since version 58.
+*   IBM Open XL C/C++ 2.1 for z/OS (or later) shall be used for z/OS build ICU, while IBM XL C/C++ for z/OS does not support C++17 and can only build up to ICU v58.
 
 When building ICU data, following environment variables shall be set:
 
@@ -394,10 +394,10 @@ ICU on z/OS builds its libraries into the z/OS UNIX file system (HFS). In additi
 
 Enviromental variables to control z/OS batch-ready build of ICU:
 
-*   ICU_PDS_NAME sets the library name, while 2 characters code will be added for specific library subset
-*   PDS_NAME_PREFIX sets the library name prefix
-*   ICU_PDS_NAME_SUFFIX sets suffix, empty by default
-*   ICU_PLUGINS_DD=1 will force ICU to load plugins from //DD:ICUPLUG, not set by default, means ICU will read plugins from an HFS directory
+*   ICU_PDS_NAME sets the library name, while 2 characters code will be added for specific library subset.
+*   PDS_NAME_PREFIX sets the library name prefix.
+*   ICU_PDS_NAME_SUFFIX sets suffix, empty by default.
+*   ICU_PLUGINS_DD controls the location from where to load plug-ins. A value of 1 forces the ICU to load plug-ins from //DD:ICUPLUG. This variable is not set by default, which means the ICU reads plug-ins from an HFS directory.
 
 Detaled schema of batch-ready naming:
 
