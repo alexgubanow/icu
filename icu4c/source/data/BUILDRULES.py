@@ -557,7 +557,8 @@ def generate_tree(
         sub_dir,
         out_sub_dir,
         use_pool_bundle,
-        dep_targets):
+        dep_targets
+        ):
     requests = []
     category = "%s_tree" % sub_dir
     out_prefix = "%s/" % out_sub_dir if out_sub_dir else ""

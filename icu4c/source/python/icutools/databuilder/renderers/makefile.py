@@ -10,6 +10,8 @@ from .. import *
 from .. import utils
 from ..request_types import *
 
+import platform
+
 def get_gnumake_rules(build_dirs, requests, makefile_vars, **kwargs):
     makefile_string = ""
 
@@ -83,10 +85,29 @@ def files_to_makefile(files, common_vars, wrap = False, **kwargs):
     else:
         return join_str.join("%s/%s" % (d, f.filename) for d,f in zip(dirnames, files))
 
+
 def get_gnumake_rules_helper(request, common_vars, **kwargs):
 
     if isinstance(request, PrintFileRequest):
         var_name = "%s_CONTENT" % request.name.upper()
+        platform_os = platform.system()
+
+        cmds = []
+
+        if platform_os in ["OS390", "zos"] and request.shall_be_utf8:
+            cmds.append(
+                    '''echo "$${VAR_NAME}" | iconv -f IBM-1047 -T -t UTF-8 > {MAKEFILENAME};
+                       sed -i '1s/^/\xef\xbb\xbf/' {MAKEFILENAME}'''.format(
+                        VAR_NAME = var_name,
+                        MAKEFILENAME = files_to_makefile([request.output_file], common_vars),
+                        **common_vars
+                    ))
+        else:
+            cmds.append("echo \"$${VAR_NAME}\" > {MAKEFILENAME}".format(
+                        VAR_NAME = var_name,
+                        MAKEFILENAME = files_to_makefile([request.output_file], common_vars),
+                        **common_vars
+                    ))
         return [
             MakeStringVar(
                 name = var_name,
@@ -97,13 +118,7 @@ def get_gnumake_rules_helper(request, common_vars, **kwargs):
                 dep_literals = [],
                 dep_files = [],
                 output_file = request.output_file,
-                cmds = [
-                    "echo \"$${VAR_NAME}\" > {MAKEFILENAME}".format(
-                        VAR_NAME = var_name,
-                        MAKEFILENAME = files_to_makefile([request.output_file], common_vars),
-                        **common_vars
-                    )
-                ]
+                cmds = cmds
             )
         ]
 
