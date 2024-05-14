@@ -58,7 +58,7 @@ class AbstractRequest(object):
 
 
 class AbstractExecutionRequest(AbstractRequest):
-    def __init__(self, shall_be_utf8 = False, **kwargs):
+    def __init__(self, **kwargs):
 
         # Names of targets (requests) or files that this request depends on.
         # The entries of dep_targets may be any of the following types:
@@ -92,8 +92,6 @@ class AbstractExecutionRequest(AbstractRequest):
         # Placeholders to substitute into the argument string; if any of these
         # have a list type, the list must be equal in length to input_files
         self.format_with = {}
-
-        self.shall_be_utf8 = shall_be_utf8
 
         super(AbstractExecutionRequest, self).__init__(**kwargs)
 
@@ -230,10 +228,9 @@ class RepeatedOrSingleExecutionRequest(AbstractExecutionRequest):
 
 
 class PrintFileRequest(AbstractRequest):
-    def __init__(self, shallBeUTF8=False, **kwargs):
+    def __init__(self, **kwargs):
         self.output_file = None
         self.content = None
-        self.shallBeUTF8 = shallBeUTF8
         super(PrintFileRequest, self).__init__(**kwargs)
 
     def all_output_files(self):
