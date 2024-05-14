@@ -395,14 +395,14 @@ ICU on z/OS builds its libraries into the z/OS UNIX file system (HFS). In additi
 Enviromental variables to control z/OS batch-ready build of ICU:
 
 *   ICU_PDS_NAME sets the library name, while 2 characters code will be added for specific library subset.
-*   PDS_NAME_PREFIX sets the library name prefix.
+*   ICU_PDS_NAME_PREFIX sets the library name prefix.
 *   ICU_PDS_NAME_SUFFIX sets suffix, empty by default.
 *   ICU_PLUGINS_DD controls the location from where to load plug-ins. A value of 1 forces the ICU to load plug-ins from //DD:ICUPLUG. This variable is not set by default, which means the ICU reads plug-ins from an HFS directory.
 
 Detaled schema of batch-ready naming:
 
 ```
-{PDS_NAME_PREFIX}{version}{2 characters code}{ICU_PDS_NAME_SUFFIX}
+{ICU_PDS_NAME_PREFIX}{version}{2 characters code}{ICU_PDS_NAME_SUFFIX}
 {      ICU_PDS_NAME      }
 ```
 

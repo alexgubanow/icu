@@ -71,13 +71,13 @@ FINAL_IMPORT_LIB=$(basename $(notdir $(FINAL_SO_TARGET))).x
 ## Non-shared intermediate object suffix
 STATIC_O = o
 
-## PDS_NAME_PREFIX sets the prefix of the PDS dataset name while keeping the ICU version number.
+## ICU_PDS_NAME_PREFIX sets the prefix of the PDS dataset name while keeping the ICU version number.
 ## To use custom names set ICU_PDS_NAME and ICU_PDS_NAME_SUFFIX
-ifeq ($(PDS_NAME_PREFIX),)
-PDS_NAME_PREFIX=LICU
+ifeq ($(ICU_PDS_NAME_PREFIX),)
+ICU_PDS_NAME_PREFIX=LICU
 endif
 ifeq ($(ICU_PDS_NAME),)
-PDS_FULL_NAME=${PDS_NAME_PREFIX}${SO_TARGET_VERSION_MAJOR}
+PDS_FULL_NAME=${ICU_PDS_NAME_PREFIX}${SO_TARGET_VERSION_MAJOR}
 else
 PDS_FULL_NAME=${ICU_PDS_NAME}
 endif
