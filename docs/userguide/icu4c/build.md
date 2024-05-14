@@ -374,9 +374,9 @@ You can install ICU on z/OS or OS/390 (the previous name of z/OS), but IBM tests
 *   Since z/OS UNIX does not support using the mmap() function over NFS, it is recommended that you build ICU on a local filesystem. Once ICU has been built, you should not have this problem while using ICU when the data library has been built as a shared library, which is this is the default setting.
 *   Encoding considerations: The source code assumes that it is compiled with codepage ibm-1047 (to be exact, the z/OS UNIX variant of it). The pax command converts all of the source code files from ASCII to codepage ibm-1047 (z/OS UNIX) EBCDIC. However, some files are binary files and must not be converted, or must be converted back to their original state. You can use the [unpax-icu.sh](https://github.com/unicode-org/icu/blob/main/icu4c/as_is/os390/unpax-icu.sh) script to do this for you automatically. It will unpackage the tar file and convert all the necessary files for you automatically.
 *   z/OS supports both native S/390 hexadecimal floating point and (with OS/390 2.6 and later) IEEE 754 binary floating point. This is a compile time option. Applications built with IEEE should use ICU DLLs that are built with IEEE (and vice versa). The environment variable ICU_IS_NOT_IEEE754=1 will disable IEEE floating point support on z/OS and use the native hexadecimal floating point. By default, ICU is built with IEEE 754 support. Native hexadecimal floating point support is sufficient for codepage conversion, resource bundle and UnicodeString operations, but the Format APIs require IEEE binary floating point.
-*   IBM Open XL C/C++ 2.1 for z/OS (or later) shall be used for z/OS build ICU, while IBM XL C/C++ for z/OS does not support C++17 and can only build up to ICU v58.
+*   Use IBM Open XL C/C++ 2.1 for z/OS (or later) for z/OS build of ICU library. IBM XL C/C++ for z/OS does not support C++17 and can only build up to ICU v58.
 
-When building ICU data, following environment variables shall be set:
+When building ICU data, you might need to set the following environment variables:
 
 ```
 export _ENCODE_FILE_NEW=IBM-1047
@@ -391,23 +391,21 @@ export _TAG_REDIR_OUT=txt
 
 ### z/OS (Batch/PDS) support outside the z/OS UNIX environment
 
-ICU on z/OS builds its libraries into the z/OS UNIX file system (HFS). In addition, some libraries are built with batch-ready names. The default batch-ready ICU name convetion is LICU as prefix, 2 characters for version of library and 2 characters for exact library name, like LICU76DA or LICU76IN. This is useful, for example, when your application is externalized via Job Control Language (JCL).
+ICU on z/OS builds its libraries into the z/OS UNIX file system (HFS). In addition, some libraries are built with batch-ready names. The default batch-ready ICU naming convention is LICU as prefix, 2 characters for version of ICU library, and 2 characters for specific ICU library name (see examples below). Use the following environmental variables to control z/OS batch-ready build of ICU:
 
-Enviromental variables to control z/OS batch-ready build of ICU:
-
-*   ICU_PDS_NAME sets the library name, overrides ICU_PDS_NAME_PREFIX and version in name, while 2 characters code will be added for specific library subset.
 *   ICU_PDS_NAME_PREFIX sets the library name prefix.
-*   ICU_PDS_NAME_SUFFIX sets suffix, empty by default.
-*   ICU_PLUGINS_DD controls the location from where to load plug-ins. A value of 1 forces the ICU to load plug-ins from //DD:ICUPLUG. This variable is not set by default, which means the ICU reads plug-ins from an HFS directory.
+*   ICU_PDS_NAME_SUFFIX sets the library name suffix. If not set, the suffix is empty by default.
+*   ICU_PDS_NAME overrides ICU_PDS_NAME_PREFIX and two-character ICU library version. The two-character code for the specific ICU library will be appended.
+*   ICU_PLUGINS_DD indicates the ICU plug-ins location. A value of 1 forces the ICU to load plug-ins from //DD:ICUPLUG. ICU_PLUGINS_DD is not set by default, which means the ICU reads plug-ins from an HFS directory.
 
-Detaled schema of batch-ready naming:
+Detailed schema of batch-ready naming:
 
 ```
-{ICU_PDS_NAME_PREFIX}{version}{2 characters code}{ICU_PDS_NAME_SUFFIX}
-{        ICU_PDS_NAME        }
+{ICU_PDS_NAME_PREFIX}{two-character ICU library version}{two-character ICU library code}{ICU_PDS_NAME_SUFFIX}
+{                    ICU_PDS_NAME                      }
 ```
 
-Default batch-ready library subset names map to original UNIX names:
+Default batch-ready library subset names mapped to original UNIX names:
 
 ```
 LICU76DA - libicudata.so
@@ -416,7 +414,7 @@ LICU76IO - libicuio.so
 LICU76UC - libicuuc.so
 ```
 
-Batch-ready libraries shall be copied to PDSE dataset, to use from batch. Dataset can be allocated with the following attributes:
+To use ICU from batch, copy the ICU libraries to a PDSE data set with the following attributes:
 
 ```
 Data Set Name . . . : USER.ICU.LOAD
